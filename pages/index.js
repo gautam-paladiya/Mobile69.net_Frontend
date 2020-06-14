@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import CookieConsent, { Cookies } from 'react-cookie-consent'
 import Link from 'next/link'
 
+
 class Home extends React.Component {
   constructor (props) {
     super(props)

@@ -12,7 +12,7 @@ const MusicOverView = dynamic(() => import('../musicoverview'), {
   ssr: false,
   loading: () => <div>Loading....</div>
 })
-
+import CountDown from '../countDown'
 // import MusicOverView from '../musicoverview'
 import download from '../../utils/Downloads'
 import Link from 'next/link'
@@ -26,7 +26,8 @@ class ItemOverViewComponent extends Component {
       pageFound: props.pageFound,
       post: props.item,
       sharePopup: false,
-      isZoom: false
+      isZoom: false,
+      countDown: false
     }
     this.myRef = React.createRef()
   }
@@ -109,10 +110,29 @@ class ItemOverViewComponent extends Component {
     this.setState({ isZoom: !this.state.isZoom })
   }
 
+  toggleCountDownHandler = toggle => {
+    this.setState({ countDown: toggle })
+  }
+
+  downloadHandle = () => {
+    download(
+      `${process.env.PUBLIC_URL}/${this.state.post.types}/${this.state.post.fileName}`,
+      `${this.state.post.fileOriginName}`
+    )
+    this.plusDownload()
+  }
+
   render () {
+    console.log(this.state.countDown)
     return this.state.pageFound ? (
       this.state.post ? (
         <div className='parent '>
+          {this.state.countDown && (
+            <CountDown
+              toggleCountDown={toggle => this.toggleCountDownHandler(toggle)}
+              download={this.downloadHandle}
+            />
+          )}
           <div>
             {!this.state.isZoom && (
               <div className='header-parent pt-2 d-flex flex-column align-items-md-start flex-md-row '>
@@ -168,11 +188,7 @@ class ItemOverViewComponent extends Component {
                     className=' btn btn-primary btn-md'
                     onClick={() => {
                       setTimeout(() => {
-                        download(
-                          `${process.env.PUBLIC_URL}/${this.state.post.types}/${this.state.post.fileName}`,
-                          `${this.state.post.fileOriginName}`
-                        )
-                        this.plusDownload()
+                        this.toggleCountDownHandler(true)
                       }, 1000)
                     }}
                   >

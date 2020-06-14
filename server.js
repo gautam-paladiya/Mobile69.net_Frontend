@@ -12,11 +12,10 @@ var cookieParser = require('cookie-parser')
 const app = next({ dev })
 
 const handle = app.getRequestHandler()
-const server = express()
 
 app.prepare().then(() => {
+  const server = express()
   server.use(cookieParser())
-
   server.use(
     createProxyMiddleware(`/api`, {
       target: `http://localhost:4000`,
@@ -24,7 +23,13 @@ app.prepare().then(() => {
     })
   )
 
-  server.all('*', (req, res) => handle(req, res))
+  server.get('*', (req, res) => {
+    return handle(req, res)
+  })
+  // Does this fix it? Also fallback for POST.. ?
+  server.post('*', (req, res) => {
+    return handle(req, res)
+  })
 
   server.listen(port, err => {
     if (err) {

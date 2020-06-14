@@ -41,13 +41,12 @@ export function getProfile () {
   return profile ? JSON.parse(localStorage.profile) : {}
 }
 
-export function setToken (idToken = 'id_token') {
+export function setToken (idToken) {
   // Saves user token to localStorage
   // Cookie.set('id_token', idToken, { expires: 1 })
+  console.log('to', idToken)
   Cookie.set('id_token', idToken, {
-    expires: 7,
-    domain: '.zedge-next.now.sh',
-    secure: true
+    expires: 7
   })
   // Cookie.set('id_token', idToken, {expires: 7, secure:true })
 }

@@ -11,7 +11,7 @@ module.exports = {
     JWT_SECRET: 'Paladiya',
     NAME_SPACE: 'Mobile69.in',
     // PUBLIC_URL: 'http://mobile69.in',
-    PUBLIC_URL: 'http://localhost:3000/api',
+    PUBLIC_URL: 'https://mobile69.in/api',
     DOMAIN: 'https://mobile69.in'
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
@@ -24,11 +24,6 @@ module.exports = {
       test: /\.(png|svg|jpg|gif)$/,
       use: ['file-loader']
     })
-    return config
-  },
-  webpackDevMiddleware: config => {
-    // Perform customizations to webpack dev middleware config
-    // Important: return the modified config
     return config
   }
 }

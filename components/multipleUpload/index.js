@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Message from '../message'
 import Progress from '../progress/progress.component'
 import { connect } from 'react-redux'
-import Header from '../header/index'
 import { all } from '../../utils/data'
 import { AxiosInstance } from '../../utils/Helper'
 

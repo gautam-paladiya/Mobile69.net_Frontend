@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import HeaderComponent from './header'
 import dynamic from 'next/dynamic'
-// const HeaderComponent = dynamic(() => import('./header'),{
-//   ssr:false,
+// const HeaderComponent = dynamic(() => import('./header'), {
+//   ssr: false
 // })
 import Head from 'next/head'
 export default function ({ children, title = `${process.env.NAME_SPACE}` }) {
@@ -35,7 +35,7 @@ export default function ({ children, title = `${process.env.NAME_SPACE}` }) {
         />
         <meta
           property='og:image'
-          content={`${process.env.DOMAIN}/original.png}`}
+          content={`${process.env.DOMAIN}/original.png`}
         />
 
         {/* <!-- Twitter --> */}
@@ -51,15 +51,16 @@ export default function ({ children, title = `${process.env.NAME_SPACE}` }) {
         />
         <meta
           property='twitter:image'
-          content={`${process.env.DOMAIN}/original.png}`}
+          content={`${process.env.DOMAIN}/original.png`}
         />
 
         <meta
           property='image'
-          content={`${process.env.DOMAIN}/original.png}`}
+          content={`${process.env.DOMAIN}/original.png`}
         />
 
-        <meta property='url' content={`${process.env.DOMAIN}/original.png}`} />
+        <meta property='url' content={`${process.env.DOMAIN}/original.png`} />
+       
       </Head>
       <HeaderComponent />
       {children}

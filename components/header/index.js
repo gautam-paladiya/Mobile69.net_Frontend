@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setSerachTermAction } from '../../redux/entities/entityAction'
 import { wrapper } from '../../redux/store'
 import $ from 'jquery'
+import Head from 'next/head'
 
 function Header (props) {
   const [toggle, setToggle] = useState(false)
@@ -34,6 +35,18 @@ function Header (props) {
 
   return (
     <div className='header '>
+      <Head>
+        {/* <script
+          async
+          src='https://www.googletagmanager.com/gtag/js?id=UA-147336177-2'
+        ></script>
+        <script>
+          window.dataLayer = window.dataLayer || []; function gtag()
+          console.log('window',window)
+          {window.dataLayer.push(arguments)}
+          gtag('js', new Date()); gtag('config', 'UA-147336177-2');
+        </script> */}
+      </Head>
       <div className='header-parent'>
         <div className='col-md-3 logo menu'>
           <Link href='/' replace>

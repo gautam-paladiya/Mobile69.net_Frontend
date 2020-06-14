@@ -83,6 +83,7 @@ class UserGallery extends Component {
                       name={true}
                       col='col-md-3 col-6'
                       updateGallery={id => this.updateGallery(id)}
+                      download={true}
                     />
                   )
                 case 'music':
@@ -96,6 +97,8 @@ class UserGallery extends Component {
                       name={true}
                       col='col-md-3 col-6'
                       updateGallery={id => this.updateGallery(id)}
+                      download={true}
+
                     />
                   )
 

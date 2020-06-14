@@ -2,8 +2,9 @@
   "name": "learn-starter",
   "version": "0.1.0",
   "private": true,
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
     "start": "cross-env NODE_ENV=production node server.js",
     "proxy": "cross-env NODE_ENV=development PORT=3000 nodemon server.js",
