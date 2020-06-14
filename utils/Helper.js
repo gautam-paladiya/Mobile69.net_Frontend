@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
 export const AxiosInstance = Axios.create({
-  baseURL: `${process.env.PUBLIC_URL}`,
+  baseURL: `http://localhost:3000/api`,
   timeout: 3000
 })

@@ -4,6 +4,7 @@ const next = require('next')
 
 const port = process.env.PORT || 3000
 const env = process.env.NODE_ENV
+console.log('env', env)
 const dev = env !== 'production'
 
 var cookieParser = require('cookie-parser')
@@ -11,16 +12,15 @@ var cookieParser = require('cookie-parser')
 const app = next({ dev })
 
 const handle = app.getRequestHandler()
+const server = express()
 
 app.prepare().then(() => {
-  const server = express()
-  // server.use(cookieParser())
+  server.use(cookieParser())
 
   // server.use(
-  //   createProxyMiddleware('/api', {
+  //   createProxyMiddleware(`/api`, {
   //     target: `http://localhost:4000`,
-  //     pathRewrite: { '^/api': '/' },
-  //     changeOrigin: true
+  //     pathRewrite: { '^/api': '' }
   //   })
   // )
 
