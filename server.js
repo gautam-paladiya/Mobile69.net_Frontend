@@ -17,12 +17,12 @@ const server = express()
 app.prepare().then(() => {
   server.use(cookieParser())
 
-  // server.use(
-  //   createProxyMiddleware(`/api`, {
-  //     target: `http://localhost:4000`,
-  //     pathRewrite: { '^/api': '' }
-  //   })
-  // )
+  server.use(
+    createProxyMiddleware(`/api`, {
+      target: `http://localhost:4000`,
+      pathRewrite: { '^/api': '' }
+    })
+  )
 
   server.all('*', (req, res) => handle(req, res))
 

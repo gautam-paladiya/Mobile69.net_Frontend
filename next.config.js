@@ -1,6 +1,7 @@
 const Dotenv = require('dotenv-webpack')
 
 module.exports = {
+  
   env: {
     API_HOST: 'http://localhost:4000',
     MONGO_SRV: 'mongodb://localhost:27017/zedge',
@@ -10,7 +11,7 @@ module.exports = {
     JWT_SECRET: 'Paladiya',
     NAME_SPACE: 'Mobile69.in',
     // PUBLIC_URL: 'http://mobile69.in',
-    PUBLIC_URL: 'http://localhost:3000',
+    PUBLIC_URL: 'http://localhost:3000/api',
     DOMAIN: 'https://mobile69.in'
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
