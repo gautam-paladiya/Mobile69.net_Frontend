@@ -2,8 +2,6 @@ import React from 'react'
 import Layout from '../../../components/Layout'
 import Navigation from '../../../components/navigation'
 import ItemOverViewComponent from '../../../components/itemoverview'
-import Axios from 'axios'
-import TrianglifyGenerate from '../../../utils/Trianglify'
 import { connect } from 'react-redux'
 import { AxiosInstance } from '../../../utils/Helper'
 
@@ -16,6 +14,16 @@ class DetailPage extends React.Component {
     return (
       <Layout title={post.fileOriginName}>
         <Head>
+
+        <meta
+          name='title'
+          content='Free download mobile Ringtones and wallpapers'
+        />
+        <meta
+          name='description'
+          content={`Search free  wallpapers, ringtones and notifications on ${process.env.NAME_SPACE}  and personalize your phone to suit you. Start your search now and free your phone`}
+        />
+
           <meta
             property='og:url'
             content={`${process.env.DOMAIN}/detail/${post._id}`}

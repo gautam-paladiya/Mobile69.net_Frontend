@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import SliderComponent from '../slider'
-import { getIsAuthenticated } from '../../utils/AuthService '
 import Router from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSerachTermAction } from '../../redux/entities/entityAction'
@@ -47,20 +46,25 @@ function Header (props) {
           gtag('js', new Date()); gtag('config', 'UA-147336177-2');
         </script> */}
       </Head>
-      <div className='header-parent'>
+      <div className='header-parent flex-column flex-md-row'>
         <div className='col-md-3 logo menu'>
           <Link href='/' replace>
-            <img src='/img/logo.png' alt='logo' />
+            <img src='/img/logo.png' alt={process.env.NAME_SPACE} />
           </Link>
         </div>
-        <div className='col-md-6 menu'>
-          <div className='input-group md-form form-sm form-1 pl-0'>
+        <div className='col-md-6 col-14 menu'>
+          <div className='input-group md-form sm-form form-sm form-1 pl-0'>
             <div className='input-group-prepend'>
               <span
                 className='input-group-text purple lighten-3'
                 id='basic-text1'
               >
-                <img src='/svg/search.svg' width={25} height={23} />
+                <img
+                  src='/svg/search.svg'
+                  alt='search'
+                  width={25}
+                  height={23}
+                />
               </span>
             </div>
             <input
@@ -77,6 +81,7 @@ function Header (props) {
         </div>
         <div className='col-md-3 drawer menu'>
           <img
+            alt='menu'
             src='/svg/bars.svg'
             width={30}
             height={30}

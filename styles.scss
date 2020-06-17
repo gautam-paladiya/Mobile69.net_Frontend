@@ -1,3 +1,29 @@
+@import './components/navigation/navigation.style.scss';
+@import './components/directory/directory.scss';
+
+/* HEADER COMPONENT */
+@import './components/header/header.scss';
+
+/* SLIDER COPONENT */
+@import './components/slider/slider.scss';
+
+@import './components/imageoverview/style.scss';
+
+@import './components/musicoverview/style.scss';
+@import './components/musicItem/style.scss';
+
+@import './components/sharePopUp/style.scss';
+@import './components/itemoverview/itemoverview.style.scss';
+@import './node_modules/react-circular-progressbar/dist/styles.css';
+@import './components/page404/style.scss';
+@import './components/file-upload/fileupload.style.scss';
+@import './components/parentLoading/style.scss';
+@import './components/multipleUpload/style.scss';
+
+@import './node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+@import './components/countDown/style.scss';
+
 body {
 	padding: 0 !important;
 	margin: 0 !important;
@@ -17,7 +43,7 @@ code {
 	display: block; /* for use on default inline elements like span */
 	margin: 9px 0;
 	overflow: hidden;
-	background-color: #e5e5e5;
+	background-color: #fff5f5fb;
 }
 
 .App {
@@ -25,32 +51,9 @@ code {
 	margin-bottom: 10px !important;
 }
 
-@import './components/navigation/navigation.style.scss';
-@import './components/directory/directory.scss';
-
-/* HEADER COMPONENT */
-@import './components/header/header.scss';
-
-/* SLIDER COPONENT */
-@import './components/slider/slider.scss';
-
-@import './components/imageoverview/style.scss';
-
-@import './components/musicoverview/style.scss';
-@import './components/musicItem/style.scss';
-
-@import './components/sharePopUp/style.scss';
-@import './components/itemoverview/itemoverview.style.scss';
-@import './components/loading/style.scss';
-@import './node_modules/react-circular-progressbar/dist/styles.css';
-@import './components/page404/style.scss';
-@import './components/file-upload/fileupload.style.scss';
-@import './components/parentLoading/style.scss';
-@import './components/multipleUpload/style.scss';
-
-@import './node_modules/bootstrap/dist/css/bootstrap.min.css';
-
-@import './components/countDown/style.scss';
+.layout-parent {
+	background-color: #f1eef1de;
+}
 
 /* HOME PAGE*/
 .homepage {

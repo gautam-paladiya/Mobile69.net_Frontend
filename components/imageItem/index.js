@@ -1,8 +1,5 @@
 import Img from 'react-image'
 import Link from 'next/link'
-import { GridLoader } from 'react-spinners'
-import Router from 'next/router'
-import { useDispatch } from 'react-redux'
 import { AxiosInstance } from '../../utils/Helper'
 
 const ImageItem = props => {
@@ -27,8 +24,9 @@ const ImageItem = props => {
       <Link href='/detail/[id]' as={`/detail/${props.item._id}`}>
         <div className='card '>
           <Img
+          alt={props.item.fileOriginName}
             className='card-img img-cover'
-            src={`${process.env.PUBLIC_URL}/${props.item.types}/${props.item.fileName}`}
+            src={`${process.env.PUBLIC_URL}/${props.item.types}/resize/${props.item.fileName}`}
             // loader={<GridLoader size={20} margin={10} />}
             // unloader={<GridLoader size={20} margin={10} />}
           />
@@ -41,6 +39,7 @@ const ImageItem = props => {
       </Link>
       {props.delete && (
         <img
+        alt='close'
           className='btn-close'
           src='/svg/close.svg'
           width={25}
@@ -55,6 +54,7 @@ const ImageItem = props => {
         <div className='download'>
           <h5 className='file-text text-primary '>
             <img
+            alt='Download'
               src='/svg/download.svg'
               className='ml-4 mr-2 align-self-center text-primary'
             />

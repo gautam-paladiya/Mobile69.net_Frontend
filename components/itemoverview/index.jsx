@@ -3,19 +3,12 @@ import Page404 from '../page404/index'
 import { AxiosInstance } from '../../utils/Helper'
 import { connect } from 'react-redux'
 import SharePopup from '../sharePopUp'
-import Loading from '../loading'
 import ImageOverView from '../imageoverview'
-import TrianglifyGenerate from '../../utils/Trianglify'
-import dynamic from 'next/dynamic'
-import { CircleLoader } from 'react-spinners'
-const MusicOverView = dynamic(() => import('../musicoverview'), {
-  ssr: false,
-  loading: () => <div>Loading....</div>
-})
 import CountDown from '../countDown'
-// import MusicOverView from '../musicoverview'
+import MusicOverView from '../musicoverview'
 import download from '../../utils/Downloads'
 import Link from 'next/link'
+import ParentLoading from '../parentLoading'
 
 class ItemOverViewComponent extends Component {
   constructor (props) {
@@ -78,7 +71,7 @@ class ItemOverViewComponent extends Component {
       title: `${process.env.NAME_SPACE}`,
       text:
         'Download free Latest Ringtones and HD, mobile, wallaper Free on Mobile69.',
-      url: `${process.env.PUBLIC_URL}/detail/${this.state.post.fileName}`
+      url: `${process.env.DOMAIN}/detail/${this.state.post.fileName}`
     }
     if (navigator.share) {
       navigator
@@ -138,7 +131,11 @@ class ItemOverViewComponent extends Component {
               <div className='header-parent pt-2 d-flex flex-column align-items-md-start flex-md-row '>
                 <div className='left col-12 col-md-10'>
                   <div className='d-flex'>
-                    <img src='/img/user.png' className='img-profile' />
+                    <img
+                      src='/img/user.png'
+                      className='img-profile'
+                      alt='profile'
+                    />
                     <div className='d-flex flex-column'>
                       <div className='d-flex align-items-center'>
                         <h5 className='file-text'>
@@ -164,9 +161,9 @@ class ItemOverViewComponent extends Component {
                     {this.state.post.fileTags.map((tag, index) => {
                       return (
                         <Link href={`/find/${tag}`} key={index}>
-                          <span className='badge badge-pill badge-info tagBadge'>
+                          <h6 className='badge badge-pill badge-info tagBadge'>
                             {tag}
-                          </span>
+                          </h6>
                         </Link>
                       )
                     })}
@@ -175,6 +172,7 @@ class ItemOverViewComponent extends Component {
 
                 <div className='col-12 mt-4 col-md-2 d-flex justify-content-md-end  justify-content-center'>
                   <img
+                    alt='Share'
                     src='/svg/share.svg'
                     type='button'
                     className='btn btn-primary btn-md mr-2 text-white'
@@ -219,14 +217,14 @@ class ItemOverViewComponent extends Component {
               hide={this.hide}
               img={
                 this.state.post.types == 'image'
-                  ? `${process.env.PUBLIC_URL}/detail/${this.state.post.fileName}`
-                  : `${process.env.PUBLIC_URL}/original.png`
+                  ? `${process.env.DOMAIN}/detail/${this.state.post.fileName}`
+                  : `${process.env.DOMAIN}/original.png`
               }
             />
           )}
         </div>
       ) : (
-        <Loading />
+        <ParentLoading />
       )
     ) : (
       <Page404 />

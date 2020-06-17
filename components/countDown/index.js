@@ -1,13 +1,11 @@
 import { CircularProgressbar } from 'react-circular-progressbar'
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 export default function CountDown (props) {
   var total = 10
   const [timeleft, setTimeLeft] = useState(total)
-  const [percent, setPercent] = useState(100)
   if (timeleft > 0) {
     setTimeout(() => {
       setTimeLeft(timeleft - 1)
-      setPercent((total - timeleft) * 100)
     }, 1000)
   } else {
     props.toggleCountDown(false)
@@ -38,8 +36,8 @@ export default function CountDown (props) {
           alt={`Download ${process.env.NAME_SPACE} Ringtones & Wallpapers`}
           className='original-img '
         />
-        <p className=''>{`Download ${process.env.NAME_SPACE} Ringtones & Wallpapers`}</p>
-        <div className=''>
+        <h4>{`Download ${process.env.NAME_SPACE} Ringtones & Wallpapers`}</h4>
+        <div className='mt-2'>
           <a href='https://mobile69.in/' target='_blank'>
             <img
               className='col-md-6 col-6'
@@ -55,7 +53,7 @@ export default function CountDown (props) {
             />
           </a>
         </div>
-        <h4 className='mt-2'>OR Wait for</h4>
+        <h5 className='mt-2'>OR Wait for</h5>
         <div className='content-down m-3'>
           <CircularProgressbar
             className='progress'

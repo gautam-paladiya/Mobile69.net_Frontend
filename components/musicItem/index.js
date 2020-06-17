@@ -5,9 +5,14 @@ import { play, pause } from '../../redux/music/musicAction'
 import { CircularProgressbar } from 'react-circular-progressbar'
 import Img from 'react-image'
 import MusicSpinner from '../../utils/MusicSpinner'
-import TrianglifyGenerate from '../../utils/Trianglify'
 import { AxiosInstance } from '../../utils/Helper'
-import Trianglify from 'react-trianglify'
+// import Trianglify from 'react-trianglify'
+import dynamic from 'next/dynamic'
+const Trianglify = dynamic(()=>import('react-trianglify'),{
+  ssr:false
+})
+import pauseIcon from '../../assets/img/pause.png'
+import playIcon from '../../assets/img/play.png'
 
 class MusicItem extends Component {
   constructor (props) {
@@ -91,9 +96,7 @@ class MusicItem extends Component {
           preload='auto'
           ref={audio => (this.audio = audio)}
           id='audio'
-          src={
-            process.env.PUBLIC_URL + '/music/' + this.props.item.fileName
-          }
+          src={process.env.PUBLIC_URL + '/music/' + this.props.item.fileName}
           onEnded={() => this.onHandleEnded(this.props.item._id)}
           onPlay={() => this.onHandlePlay(this.props.item._id)}
           onPause={() => this.onHandlePause(this.props.item._id)}
@@ -123,7 +126,7 @@ class MusicItem extends Component {
             </div>
           </Link>
 
-          {this.state.imgLoading && this.state.loading ? (
+          {this.state.loading ? (
             <div className='parent-media progress'>
               <MusicSpinner className='progress' />
             </div>
@@ -136,6 +139,7 @@ class MusicItem extends Component {
 
           {this.props.delete && (
             <img
+              alt='close'
               className='btn-close'
               src='/svg/close.svg'
               width={25}
@@ -146,19 +150,35 @@ class MusicItem extends Component {
               }}
             />
           )}
+
+          {this.props.download && (
+            <div className='download'>
+              <h5 className='file-text text-primary '>
+                <img
+                  alt='Download'
+                  src='/svg/download.svg'
+                  className='ml-4 mr-2 align-self-center text-primary'
+                />
+              </h5>
+
+              <h5 className='file-text text-primary '>
+                {this.props.item.downloads}
+              </h5>
+            </div>
+          )}
           <div className='card-img-overlay parent-media'>
             {this.props.isPlaying &&
             this.props.playId === this.props.item._id ? (
               <img
                 alt='pause'
-                src='/img/pause.png'
+                src={pauseIcon}
                 onClick={() => this.onPause(this.props.item._id)}
                 className='img-media'
               />
             ) : (
               <img
                 alt='play'
-                src='/img/play.png'
+                src={playIcon}
                 onClick={() => this.onPlay(this.props.item._id)}
                 className='img-media'
               />

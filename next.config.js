@@ -1,7 +1,9 @@
 const Dotenv = require('dotenv-webpack')
+const withImages = require('next-images')
+const TerserPlugin = require('terser-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
-module.exports = {
-  
+module.exports = withImages({
   env: {
     API_HOST: 'http://localhost:4000',
     MONGO_SRV: 'mongodb://localhost:27017/zedge',
@@ -20,10 +22,30 @@ module.exports = {
     // Important: return the modified config
     config.plugins.push(new Dotenv({ silent: true }))
     config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
-    config.module.rules.push({
-      test: /\.(png|svg|jpg|gif)$/,
-      use: ['file-loader']
-    })
+    // config.plugins.push(
+    //   new UglifyJSPlugin({
+    //     uglifyOptions: {
+    //       compress: {
+    //         drop_console: true
+    //       }
+    //     }
+    //   })
+    // )
+    // config.optimization = {
+    //   minimizer: [
+    //     new UglifyJSPlugin({
+    //       uglifyOptions: {
+    //         compress: {
+    //           drop_console: true
+    //         }
+    //       }
+    //     })
+    //   ]
+    // }
+    // config.module.rules.push({
+    //   test: /\.(png|svg|jpg|gif)$/,
+    //   use: ['file-loader']
+    // })
     return config
   }
-}
+})

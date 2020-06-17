@@ -12,6 +12,7 @@ var cookieParser = require('cookie-parser')
 const app = next({ dev })
 
 const handle = app.getRequestHandler()
+// const handler = routes.getRequestHandler( app )
 
 app.prepare().then(() => {
   const server = express()

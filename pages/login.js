@@ -8,6 +8,14 @@ class Login extends React.Component {
       <div>
         <Head>
           <title>Login</title>
+          <meta
+          name='title'
+          content={`${process.env.NAME_SPACE} Login`}
+        />
+        <meta
+          name='description'
+          content={`By login Uploads Unlimited wallpapers, ringtones and notifications on ${process.env.NAME_SPACE}  and personalize your phone to suit you. Start your search now and free your phone`}
+        />
         </Head>
         <LoginComponent />
       </div>

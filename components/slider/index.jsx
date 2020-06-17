@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { getIsAuthenticated, handleLogout } from '../../utils/AuthService '
 import { useRouter } from 'next/router'
+import closeIcon from '../../assets/svg/close.svg'
 
 function Slider (props) {
   const handleSignin = () => {
@@ -11,10 +12,11 @@ function Slider (props) {
 
   console.log('authenticate', getIsAuthenticated())
   return (
-    <div className='slider'>
+    <div className='slider' onClick={() => props.toggleSlider()}>
       <div className='content text-left col-md-3 col-sm-12 '>
         <img
-          src='/svg/close.svg'
+          alt='close'
+          src={closeIcon}
           width={50}
           height={50}
           className='text-white py-2 align-self-start '
@@ -24,15 +26,21 @@ function Slider (props) {
         <h5 className='text-muted  '>Content</h5>
         <div className='d-flex flex-column category'>
           <div className='con-item text-left text-white'>
-            <Link href='/ringtones-and-wallpapers'>All</Link>
+            <h5>
+              <Link href='/all'>All</Link>
+            </h5>
           </div>
 
           <div className='con-item text-left text-white'>
-            <Link href='/wallpapers'>Wallpaper</Link>
+            <h5>
+              <Link href='/wallpapers'>Wallpaper</Link>
+            </h5>
           </div>
 
           <div className='con-item text-left text-white'>
-            <Link href='/ringtones'>Ringtone</Link>
+            <h5>
+              <Link href='/ringtones'>Ringtone</Link>
+            </h5>
           </div>
         </div>
         <h5 className='text-muted py-2'>Share Your Content</h5>

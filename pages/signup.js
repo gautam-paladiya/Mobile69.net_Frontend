@@ -9,6 +9,14 @@ class Signup extends React.Component {
       <div>
         <Head>
           <title>Signup</title>
+          <meta
+          name='title'
+          content={`${process.env.NAME_SPACE} Sign Up`}
+        />
+        <meta
+          name='description'
+          content={`By Register account to start Uploads Unlimited wallpapers, ringtones and notifications on ${process.env.NAME_SPACE}  and personalize your phone to suit you. Start your search now and free your phone`}
+        />
         </Head>
         <SignupComponent />
       </div>

@@ -1,13 +1,9 @@
-import Link from 'next/link'
 import HeaderComponent from './header'
-import dynamic from 'next/dynamic'
-// const HeaderComponent = dynamic(() => import('./header'), {
-//   ssr: false
-// })
+
 import Head from 'next/head'
-export default function ({ children, title = `${process.env.NAME_SPACE}` }) {
+export default function ({ children, title = `${process.env.NAME_SPACE}`, canonical='' }) {
   return (
-    <div>
+    <div className='layout-parent'>
       <Head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -19,8 +15,14 @@ export default function ({ children, title = `${process.env.NAME_SPACE}` }) {
         />
         <meta
           name='description'
-          content='Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69.in'
+          content={`Search free  wallpapers, ringtones and notifications on ${process.env.NAME_SPACE}  and personalize your phone to suit you. Start your search now and free your phone`}
         />
+
+        <link
+          data-rh='true'
+          rel='canonical'
+          href={`${process.env.DOMAIN}/${canonical}`}
+        ></link>
 
         {/* <!-- Open Graph / Facebook --> */}
         <meta property='og:type' content='website' />
@@ -31,7 +33,7 @@ export default function ({ children, title = `${process.env.NAME_SPACE}` }) {
         />
         <meta
           property='og:description'
-          content='Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69.in'
+          content={`Search free  wallpapers, ringtones and notifications on ${process.env.NAME_SPACE}  and personalize your phone to suit you. Start your search now and free your phone`}
         />
         <meta
           property='og:image'
@@ -39,7 +41,7 @@ export default function ({ children, title = `${process.env.NAME_SPACE}` }) {
         />
 
         {/* <!-- Twitter --> */}
-        <meta property='twitter:card' content='summary_large_image' />
+        <meta property='twitter:card' content={`${process.env.DOMAIN}/original.png`} />
         <meta property='twitter:url' content={`${process.env.DOMAIN}`} />
         <meta
           property='twitter:title'
@@ -54,13 +56,9 @@ export default function ({ children, title = `${process.env.NAME_SPACE}` }) {
           content={`${process.env.DOMAIN}/original.png`}
         />
 
-        <meta
-          property='image'
-          content={`${process.env.DOMAIN}/original.png`}
-        />
+        <meta property='image' content={`${process.env.DOMAIN}/original.png`} />
 
         <meta property='url' content={`${process.env.DOMAIN}/original.png`} />
-       
       </Head>
       <HeaderComponent />
       {children}

@@ -10,8 +10,13 @@ import { useDispatch } from 'react-redux'
 import { play, pause } from '../../redux/music/musicAction'
 import { wrapper } from '../../redux/store'
 import { AxiosInstance } from '../../utils/Helper'
-import Trianglify from 'react-trianglify'
-
+import dynamic from 'next/dynamic'
+const Trianglify = dynamic(()=>import('react-trianglify'),{
+  ssr:false
+})
+// import Trianglify from 'react-trianglify'
+import pauseIcon from '../../assets/img/pause.png'
+import playIcon from '../../assets/img/play.png'
 function MusicOverView (props) {
   const { entity } = useSelector(state => state)
   const [audioPercent, setAudioPercent] = useState(0)
@@ -118,14 +123,14 @@ function MusicOverView (props) {
             entity.music.itemId === props.item._id ? (
               <img
                 alt='pause button'
-                src='/img/pause.png'
+                src={pauseIcon}
                 onClick={() => onPause(props.item._id)}
                 className='img-media'
               />
             ) : (
               <img
                 alt='play button'
-                src='/img/play.png'
+                src={playIcon}
                 onClick={() => onPlay(props.item._id)}
                 className='img-media'
               />

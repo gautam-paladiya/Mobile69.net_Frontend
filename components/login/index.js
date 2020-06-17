@@ -9,6 +9,7 @@ import {
   setIsAuthenticated
 } from '../../utils/AuthService '
 import { AxiosInstance } from '../../utils/Helper'
+import SocialButton from '../socialButton'
 
 export default function LoginComponent () {
   const router = useRouter()
@@ -38,7 +39,7 @@ export default function LoginComponent () {
       })
         .then(res => {
           console.log(res)
-  
+
           if (res.status == 200 && res.data.user) {
             setProfile(res.data.user)
             setToken(res.data.user.jwt)
@@ -59,12 +60,19 @@ export default function LoginComponent () {
       setLoading(false)
       setError('Something went wront try again')
     }
-
-    
   }
 
   const handleChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value })
+  }
+
+  handleFacebookSuccess = (data) => {
+    console.log(data)
+  }
+
+  handleSocialLoginFailure = (data) => {
+    console.log(data)
+
   }
 
   return (
@@ -76,12 +84,13 @@ export default function LoginComponent () {
               <div className='col-md-5'>
                 <img
                   src='/img/login.webp'
-                  alt='login'
+                  alt='Login'
                   className='login-card-img'
                 />
               </div>
               <div className='close'>
                 <img
+                  alt='Close'
                   src='/svg/close.svg'
                   width={25}
                   height={25}
@@ -93,7 +102,7 @@ export default function LoginComponent () {
                   <div className='brand-wrapper'>
                     <img
                       src='/img/logo.png'
-                      alt='logo'
+                      alt={process.env.NAME_SPACE}
                       className='logo'
                       onClick={() => router.replace('/')}
                     />
@@ -169,6 +178,14 @@ export default function LoginComponent () {
                       Register here
                     </button>
                   </p>
+                  {/* <SocialButton
+                    provider='facebook'
+                    appId='YOUR_APP_ID'
+                    onLoginSuccess={handleFacebookSuccess}
+                    onLoginFailure={handleSocialLoginFailure}
+                  >
+                    Login with Facebook
+                  </SocialButton> */}
                   {/* <nav className='login-card-footer-nav'>
                       <a href='#!'>Terms of use.</a>
                       <a href='#!'>Privacy policy</a>

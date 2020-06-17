@@ -63,6 +63,7 @@ export default function SignupComponent (props) {
             </div>
             <div className='close'>
               <img
+              alt='close'
                 src='/svg/close.svg'
                 width={25}
                 height={25}
@@ -74,7 +75,7 @@ export default function SignupComponent (props) {
                 <div className='brand-wrapper'>
                   <img
                     src='/img/logo.png'
-                    alt='logo'
+                    alt={process.env.NAME_SPACE}
                     className='logo'
                     onClick={() => router.replace('/')}
                   />

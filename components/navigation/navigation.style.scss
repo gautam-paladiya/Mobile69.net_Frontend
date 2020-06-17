@@ -3,14 +3,18 @@
 	margin: 0px !important;
 
 	.tab {
-		font-weight: 600;
-		padding-right: 8px;
+		text-align: center;
 		margin: 4px;
+		justify-content: center;
 		border-radius: 10px;
-		font-size: 17px;
 		.text {
 			color: white;
 			text-decoration: none;
+		}
+
+		h6{
+			font-size: 1.1rem;
+			line-height: inherit;
 		}
 	}
 }

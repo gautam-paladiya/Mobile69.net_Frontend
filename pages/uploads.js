@@ -17,8 +17,8 @@ import Layout from '../components/Layout'
 import { AxiosInstance } from '../utils/Helper'
 
 class UploadPage extends React.Component {
-  triggerUpdate = () => {
-    this.gallary.update()
+  triggerUpdate = (savedFile) => {
+    this.gallary.update(savedFile)
   }
 
   render () {
@@ -38,7 +38,7 @@ class UploadPage extends React.Component {
         <div className='container'>
           <FileuploadComponent
             currentUser={this.props.user}
-            onUpdate={this.triggerUpdate.bind(this)}
+            onUpdate={savedFile => this.triggerUpdate(savedFile)}
           />
           <UserGallery
             currentUser={this.props.user}

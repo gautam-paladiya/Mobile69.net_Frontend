@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { route } from 'next/dist/next-server/server/router'
 
 function Navigation () {
   const router = useRouter()
@@ -23,7 +22,7 @@ function Navigation () {
                 : 'btn btn-secondary tab'
             }
           >
-            All
+            <h6 >All</h6>
           </span>
         </Link>
         <Link href='/wallpapers'>
@@ -34,7 +33,7 @@ function Navigation () {
                 : 'btn btn-secondary tab'
             }
           >
-            Wallpaper
+           <h6>Wallpaper</h6> 
           </span>
         </Link>
         <Link href='/ringtones'>
@@ -45,7 +44,7 @@ function Navigation () {
                 : 'btn btn-secondary tab'
             }
           >
-            Ringtone
+           <h6>Ringtone</h6> 
           </span>
         </Link>
       </div>

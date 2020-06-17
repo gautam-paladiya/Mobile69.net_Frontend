@@ -9,7 +9,6 @@ import { connect } from 'react-redux'
 import CookieConsent, { Cookies } from 'react-cookie-consent'
 import Link from 'next/link'
 
-
 class Home extends React.Component {
   constructor (props) {
     super(props)
@@ -17,13 +16,12 @@ class Home extends React.Component {
 
   render () {
     return (
-      <div>
-        <Layout>
-          <div className='.homepage'>
-            <Navigation />
-            <WallERing />
-          </div>
-          {/* <CookieConsent
+      <Layout canonical='all'>
+        <div className='.homepage'>
+          <Navigation />
+          <WallERing />
+        </div>
+        {/* <CookieConsent
             className='position-fixed position-absolute bottom-0'
             disableStyles={true}
             location='bottom'
@@ -36,13 +34,12 @@ class Home extends React.Component {
               <Link href='/privacy'>Read more</Link>
             </span>
           </CookieConsent> */}
-        </Layout>
-      </div>
+      </Layout>
     )
   }
 }
 
-export const getStaticProps = wrapper.getStaticProps(
+export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, req, res, ...etc }) => {
     // console.log('index request', req)
     await store.dispatch(

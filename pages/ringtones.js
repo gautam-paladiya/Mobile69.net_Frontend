@@ -10,7 +10,7 @@ import { wrapper } from '../redux/store'
 class Ringtones extends React.Component {
   render () {
     return (
-      <Layout>
+      <Layout canonical='ringtones'>
         <div className='.homepage'>
           <Navigation />
           <WallERing />
@@ -20,7 +20,7 @@ class Ringtones extends React.Component {
   }
 }
 
-export const getStaticProps = wrapper.getStaticProps(
+export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, req, res, ...etc }) => {
     await store.dispatch(
       getDataAction({

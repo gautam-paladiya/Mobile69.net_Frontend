@@ -11,7 +11,6 @@ import {
   rename
 } from '../../utils/MusicTrimmer.js/utils'
 import ParentLoading from '../parentLoading'
-import dynamic from 'next/dynamic'
 import { encode } from '../../utils/MusicTrimmer.js/worker-client'
 import { AxiosInstance } from '../../utils/Helper'
 
@@ -160,7 +159,7 @@ class FileuploadComponent extends Component {
 
   onTagKeyPress = e => {
     console.log(e.key)
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === 'Enter') {
       let val = e.target.value.trim()
       e.target.value = ''
       val &&
@@ -274,7 +273,7 @@ class FileuploadComponent extends Component {
         success: true,
         files: [savedFile, ...this.state.files]
       })
-      this.props.onUpdate()
+      this.props.onUpdate(savedFile)
       console.log(this.state.files)
     } catch (error) {
       console.error(error)
@@ -497,7 +496,7 @@ const Tag = props => {
       onClick={() => props.removeTag(props.children)}
     >
       <h6 className='m-auto'>{props.children}</h6>
-      <img src='/svg/close.svg' className='ml-2' width={20} height={20} />
+      <img src='/svg/close.svg' alt='close' className='ml-2' width={20} height={20} />
     </div>
   )
 }

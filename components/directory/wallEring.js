@@ -3,16 +3,16 @@ import { RingLoader } from 'react-spinners'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import dynamic from 'next/dynamic'
 import { Spinner } from 'react-bootstrap'
-const ImageItem = dynamic(() => import('../imageItem'), {
-  ssr: false,
-  loading: () => <Spinner animation='grow' />
-})
-// import ImageItem from '../imageItem'
-// import MusicItem from '../musicItem'
-const MusicItem = dynamic(() => import('../musicItem'), {
-  ssr: false,
-  loading: () => <Spinner />
-})
+// const ImageItem = dynamic(() => import('../imageItem'), {
+//   ssr: false,
+//   loading: () => <Spinner animation='grow' />
+// })
+import ImageItem from '../imageItem'
+import MusicItem from '../musicItem'
+// const MusicItem = dynamic(() => import('../musicItem'), {
+//   ssr: false,
+//   loading: () => <Spinner animation='grow' />
+// })
 
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -20,7 +20,6 @@ import {
   findDataAction
 } from '../../redux/entities/entityAction'
 import Page404 from '../page404'
-import { RiseLoader } from 'react-spinners'
 
 export default function (props) {
   const dispatch = useDispatch()
@@ -50,7 +49,10 @@ export default function (props) {
   return (
     <div>
       {entity.error ? (
-        <Page404 title='No matching itmes found' description='Item you are looking for does not found please try again later'/>
+        <Page404
+          title='No matching itmes found'
+          description='Item you are looking for does not found please try again later'
+        />
       ) : (
         <div className='parent-dir'>
           {entity.isProgress && (
@@ -132,7 +134,11 @@ export default function (props) {
                 </div>
               )}
             </button>
-          ):(<div className="alert alert-success" role="alert">Yay! You have seen it all</div>)}
+          ) : (
+            <div className='alert alert-success' role='alert'>
+              Yay! You have seen it all
+            </div>
+          )}
           {/* </InfiniteScroll> */}
         </div>
       )}

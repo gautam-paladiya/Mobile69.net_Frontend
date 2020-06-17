@@ -7,11 +7,22 @@ import WallERing from '../../../components/directory/wallEring'
 
 import { wrapper } from '../../../redux/store'
 import { connect } from 'react-redux'
+import Head from 'next/head'
 
 class Find extends React.Component {
   render () {
     return (
       <Layout>
+        <Head>
+          <meta
+            name='title'
+            content={`${ this.props.searchTerm } Ringtones and wallpapers`}
+          />
+          <meta
+            name='description'
+            content='Find and free download mobile Ringtones and wallpapers'
+          />
+        </Head>
         <div className='.homepage'>
           <Navigation />
           <h5 className='m-3 font-weight-bold text-muted'>

@@ -296,7 +296,7 @@ const Tag = props => {
       onClick={() => props.removeTag(props.children)}
     >
       <h6 className='m-auto'>{props.children}</h6>
-      <img className='ml-2' src='/svg/close.svg' width={20} height={20} />
+      <img className='ml-2' src='/svg/close.svg' alt='Close' width={20} height={20} />
     </div>
   )
 }
