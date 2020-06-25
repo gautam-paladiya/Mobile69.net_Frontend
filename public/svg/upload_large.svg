@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="152px" height="152px" viewBox="0 0 152 152" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Upload/Primary big</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M80,155.294118 C38.4162071,155.294118 4.70588235,121.583793 4.70588235,80 C4.70588235,38.4162071 38.4162071,4.70588235 80,4.70588235 C115.59347,4.70588235 145.418497,29.4035186 153.27272,62.5964282 C154.594573,68.182741 155.294118,74.0096768 155.294118,80 C155.294118,121.583793 121.583793,155.294118 80,155.294118 Z M97.6850598,80.1203007 C99.2358717,81.702615 101.752134,81.702615 103.302946,80.1203007 C104.855082,78.5393364 104.855082,75.974151 103.302946,74.3931867 L83.3039605,54.0053632 C82.5278923,53.214206 81.5107927,52.8186275 80.4950175,52.8186275 C79.4779179,52.8186275 78.4608183,53.214206 77.6860745,54.0040131 L57.685765,74.3918366 C56.1336286,75.974151 56.1336286,78.5393364 57.685765,80.1203007 C59.2379013,81.702615 61.7528389,81.7012649 63.3036509,80.1203007 L76.5219723,66.6463268 L76.5219723,104.089933 C76.5219723,106.327045 78.3005722,108.140226 80.4950175,108.140226 C82.6894628,108.140226 84.4680627,106.327045 84.4680627,104.089933 L84.4680627,66.6463268 L97.6850598,80.1203007 Z" id="path-1"></path>
+        <linearGradient x1="0%" y1="98.9756048%" x2="100%" y2="0%" id="linearGradient-3">
+            <stop stop-color="#4E4C7F" offset="0%"></stop>
+            <stop stop-color="#956EAE" offset="98.5072545%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Upload-More-Thumb" transform="translate(-49.000000, -150.000000)">
+            <g id="Upload/Primary-very-big" transform="translate(45.000000, 146.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#000000" fill-rule="evenodd" opacity="0.539999962" xlink:href="#path-1"></use>
+                <g id="Colour/Zedge-Subtle-Gradient" mask="url(#mask-2)" fill-rule="evenodd" fill="url(#linearGradient-3)">
+                    <g transform="translate(4.705882, 4.705882)" id="Colour/Grey">
+                        <rect x="0" y="0" width="151" height="151"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

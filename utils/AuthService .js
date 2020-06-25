@@ -46,7 +46,7 @@ export function setToken (idToken) {
   // Cookie.set('id_token', idToken, { expires: 1 })
   console.log('to', idToken)
   Cookie.set('id_token', idToken, {
-    expires: 7
+    expires: 30
   })
   // Cookie.set('id_token', idToken, {expires: 7, secure:true })
 }

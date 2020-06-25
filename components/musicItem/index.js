@@ -28,6 +28,17 @@ class MusicItem extends Component {
     this.props.dispatch(pause(this.props.playId))
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    // console.log('shouldComponentUpdate props',nextProps);
+    // console.log('shouldComponentUpdate state',nextState);
+    // console.log(this.props, this.state);
+    if(nextProps.playId===nextProps.item._id)
+    {
+      return true
+    }
+    return false;  
+  }
+
   deleteImage = async id => {
     const result = await AxiosInstance.post(
       `/post/delete`,

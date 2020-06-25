@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="42px" viewBox="0 0 56 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_cloud-upload copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="step2_terms_tablet" transform="translate(-357.000000, -359.000000)" fill="#8100FF">
+            <g id="icon_cloud-upload-copy" transform="translate(357.000000, 359.000000)">
+                <path d="M45.5,21 C45.3775,21 45.262,21.0315 45.143,21.035 C45.3775,19.894 45.5,18.711 45.5,17.5 C45.5,7.8365 37.6635,0 28,0 C18.3365,0 10.5,7.8365 10.5,17.5 C10.5,17.5595 10.5175,17.6155 10.5175,17.675 C4.5815,18.522 0,23.5795 0,29.75 C0,36.5155 5.4845,42 12.25,42 L21.028,42 C22.946,42 24.5,40.446 24.5,38.528 L24.5,28 L17.073,28 L28,14 L38.927,28 L31.5,28 L31.5,38.528 C31.5,40.446 33.054,42 34.972,42 L45.5,42 C51.2995,42 56,37.2995 56,31.5 C56,25.7005 51.2995,21 45.5,21 L45.5,21 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,62 +1,68 @@
-import React, { Component, Fragment } from 'react'
-import Message from '../message'
-import Progress from '../progress/progress.component'
-import { connect } from 'react-redux'
-import { all } from '../../utils/data'
-import { sliceAudioBuffer } from '../../utils/MusicTrimmer.js/audio-helper'
+import React, { Component, Fragment } from "react";
+import Message from "../message";
+import Progress from "../progress/progress.component";
+import { connect } from "react-redux";
+import { all } from "../../utils/data";
+import { sliceAudioBuffer } from "../../utils/MusicTrimmer.js/audio-helper";
 import {
   isAudio,
   readBlobURL,
   download,
-  rename
-} from '../../utils/MusicTrimmer.js/utils'
-import ParentLoading from '../parentLoading'
-import { encode } from '../../utils/MusicTrimmer.js/worker-client'
-import { AxiosInstance } from '../../utils/Helper'
+  rename,
+} from "../../utils/MusicTrimmer.js/utils";
+import ParentLoading from "../parentLoading";
+// import { encode } from "../../utils/MusicTrimmer.js/worker-client";
+import { AxiosInstance } from "../../utils/Helper";
+var lamejs = require("lamejs");
+import WaveSurfer from "wavesurfer.js";
 
 class FileuploadComponent extends Component {
-  constructor (props) {
-    super(props)
-    this.messageRef = React.createRef()
+  constructor(props) {
+    super(props);
+    console.log("file prop", props);
+    this.messageRef = React.createRef();
     this.state = {
       files: [],
-      file: '',
-      filename: 'Choose File',
-      fileOriginName: '',
-      filepath: '',
-      message: '',
+      file: props.fileState.file,
+      filename: props.fileState.filename,
+      fileOriginName: props.fileState.fileOriginName,
+      filepath: "",
+      message: "",
       progress: 0,
       success: Boolean,
-      url: '',
+      url: props.fileState.url,
       tags: [],
-      loading: false,
+      loading: true,
       upload: [],
-      filetype: '',
-      isPlay: false
-    }
-    this.videoExt = []
-    this.imageExt = ['jpg', 'gif', 'bmp', 'png', 'jpeg', 'ico']
-    this.musicExt = ['wav', 'mp3', 'aac', 'ogg']
+      filetype: props.fileState.filetype,
+      isPlay: false,
+    };
+    this.videoExt = [];
+    this.imageExt = ["jpg", "gif", "bmp", "png", "jpeg", "ico"];
+    this.musicExt = ["wav", "mp3", "aac", "ogg"];
   }
 
-  readURL = file => {
-    return new Promise((res, rej) => {
-      const reader = new FileReader()
-      reader.onload = e => res(e.target.result)
-      reader.onerror = e => rej(e)
-      reader.readAsDataURL(file)
-    })
+  componentDidMount() {
+    setTimeout(() => {
+      if (this.state.filetype === "audio") {
+        this.initMusic(this.state.file);
+      }
+      this.setState({ loading: false });
+    }, 1000);
   }
 
-  initMusic = file => {
-    if (this.wavesurfer) {
-      this.wavesurfer.destroy()
-    }
-    this.wavesurfer = window.WaveSurfer.create({
-      container: '#waveform',
-      waveColor: '#D9DCFF',
-      progressColor: '#4353FF',
-      cursorColor: '#4353FF',
+  // shouldComponentUpdate(nextPro, nextState) {
+  //   if (this.state !== nextState) {
+  //     return true;
+  //   }
+  // }
+
+  initMusic = (file) => {
+    this.wavesurfer = WaveSurfer.create({
+      container: "#waveform",
+      waveColor: "#D9DCFF",
+      progressColor: "#4353FF",
+      cursorColor: "#4353FF",
       cursorWidth: 5,
       barWidth: 1,
       barRadius: 3,
@@ -65,316 +71,298 @@ class FileuploadComponent extends Component {
       scrollParent: true,
       plugins: [
         window.WaveSurfer.regions.create({
-          regions: []
-        })
-      ]
-    })
-    this.wavesurfer.on('ready', () => {
-      this.wavesurfer.play.bind(this.wavesurfer)
+          regions: [],
+        }),
+      ],
+    });
+    this.wavesurfer.on("ready", () => {
+      this.wavesurfer.play.bind(this.wavesurfer);
       this.wavesurfer.addRegion({
-        id: 'main',
+        id: "main",
         start: 0,
         end: this.wavesurfer.getDuration(),
         loop: true,
-        color: 'hsla(100, 100%, 30%, 0.5)',
+        color: "hsla(100, 100%, 30%, 0.5)",
         handleStyle: {
           left: {
             background:
-              'url(https://web-assets.zobj.net/web/53e81d1926/assets/handle.svg) no-repeat',
+              "url(https://web-assets.zobj.net/web/53e81d1926/assets/handle.svg) no-repeat",
 
-            cursor: 'col-resize',
-            position: 'absolute',
-            top: '0px',
-            maxWidth: '150px',
-            minWidth: '20px',
-            left: '0px'
+            cursor: "col-resize",
+            position: "absolute",
+            top: "0px",
+            maxWidth: "150px",
+            minWidth: "20px",
+            left: "0px",
           },
           right: {
             background:
-              'url(https://web-assets.zobj.net/web/53e81d1926/assets/handle.svg) no-repeat',
+              "url(https://web-assets.zobj.net/web/53e81d1926/assets/handle.svg) no-repeat",
 
-            cursor: 'col-resize',
-            position: 'absolute',
-            top: '0px',
-            maxWidth: '150px',
-            minWidth: '20px',
-            right: '0px'
-          }
-        }
-      })
-    })
-    this.wavesurfer.load(readBlobURL(file))
-  }
+            cursor: "col-resize",
+            position: "absolute",
+            top: "0px",
+            maxWidth: "150px",
+            minWidth: "20px",
+            right: "0px",
+          },
+        },
+      });
+    });
+    this.wavesurfer.load(readBlobURL(file));
+  };
 
-  onChageInput = async e => {
-    console.log(e.target.files[0])
-    const file = e.target.files[0]
-    if (!file) {
-      return
-    }
-    const fileSize = file.size / (1024 * 1024)
-    let fileType = file.name.split('.').pop()
-    const url = readBlobURL(file)
-
-    console.log(process.env.MAX_FILE_SIZE)
-    if (fileSize > process.env.REACT_APP_MAX_FILE_SIZE) {
-      this.setState({
-        success: false,
-        message: `Select max file size ${process.env.REACT_APP_MAX_FILE_SIZE} MB`
-      })
-      setTimeout(() => {
-        window.scrollTo(0, this.messageRef.current.offsetTop)
-      }, 200)
-      return
-    }
-
-    if (file.type.toLowerCase().indexOf('image') > -1) {
-      fileType = 'image'
-    } else if (isAudio(file)) {
-      fileType = 'music'
-      this.initMusic(file)
-    } else {
-      fileType = undefined
-      this.setState({ message: 'Select valid media file' })
-      this.setState({ success: false })
-      return
-    }
-
-    if (file) {
-      this.setState({
-        filetype: file.type.split('/')[0],
-        loading: false,
-        file: file,
-        filename: file.name,
-        fileOriginName: file.name.split('.')[0],
-        url: url,
-        filepath: '',
-        message: '',
-        progress: 0,
-        success: false,
-        tags: []
-      })
-    }
-  }
-
-  onTagKeyPress = e => {
-    console.log(e.key)
-    if (e.key === 'Enter') {
-      let val = e.target.value.trim()
-      e.target.value = ''
+  onTagKeyPress = (e) => {
+    console.log(e.key);
+    if (e.key === "Enter") {
+      let val = e.target.value.trim();
+      e.target.value = "";
       val &&
-        this.setState(preState => ({
-          tags: [...preState.tags, val]
-        }))
+        this.setState((preState) => ({
+          tags: [...preState.tags, val],
+        }));
     }
-  }
+  };
 
-  removeTag = removeTag => {
-    console.log('remove tag')
+  removeTag = (removeTag) => {
+    console.log("remove tag");
     this.setState({
-      tags: this.state.tags.filter(tag => {
-        return tag !== removeTag
-      })
-    })
-  }
+      tags: this.state.tags.filter((tag) => {
+        return tag !== removeTag;
+      }),
+    });
+  };
 
-  onChangeFileName = e => {
-    e.preventDefault()
-    console.log(e.target.value)
-    this.setState({ fileOriginName: e.target.value })
-  }
-
-  onSubmit = async e => {
-    e.preventDefault()
-
-    if (!this.state.file) {
-      this.setState({ message: 'Please select file' })
-      this.setState({ success: false })
+  onChangeFileName = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({ fileOriginName: e.target.value });
+  };
+  onHandleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ loading: true }, () => {
       setTimeout(() => {
-        window.scrollTo(0, this.messageRef.current.offsetTop)
-      }, 200)
-      return false
-    }
+        this.onSubmit();
+      }, 500);
+    });
+  };
 
+  onSubmit = async () => {
+    // e.preventDefault();
+    await this.setState({ loading: true });
+    this.forceUpdate();
     if (this.state.tags.length <= 0) {
-      const tag = document.getElementById('inputfilelabel')
-      if (tag.value !== '') {
-        await this.setState(preState => ({
-          tags: [...preState.tags, tag.value]
-        }))
+      const tag = document.getElementById("inputfilelabel");
+      if (tag.value !== "") {
+        await this.setState((preState) => ({
+          tags: [...preState.tags, tag.value],
+        }));
       } else {
-        this.setState({ message: 'Please enter teg with spacebar' })
-        this.setState({ success: false })
+        this.setState({ message: "Please enter teg with spacebar" });
+        this.setState({ success: false });
         setTimeout(() => {
-          window.scrollTo(0, this.messageRef.current.offsetTop)
-        }, 200)
-        return false
+          window.scrollTo(0, this.messageRef.current.offsetTop);
+        }, 200);
+        return false;
       }
     }
-    await this.setState({ loading: true })
 
-    if (this.state.filetype === 'audio') {
-      await this.handlecut(false)
+    if (this.state.filetype === "audio") {
+      console.log("handle cut");
+      await this.handlecut(false);
     }
-    console.log('myfile ', this.state.file)
 
-    const formData = new FormData()
-    formData.append('file', this.state.file)
-    formData.append('fileOriginName', this.state.fileOriginName)
-    formData.append('fileTag', this.state.tags)
-    formData.append('userName', this.props.currentUser.name)
-    this.setState({ loading: true })
-    console.log('form data ', JSON.stringify(formData))
-    let res
+    const formData = new FormData();
+    formData.append("file", this.state.file);
+    formData.append("fileOriginName", this.state.fileOriginName);
+    formData.append("fileTag", this.state.tags);
+    formData.append("userName", this.props.currentUser.name);
+    formData.append("fileType", this.state.filetype);
+    console.log("form data ", JSON.stringify(formData));
+    let res;
     try {
-      res = await AxiosInstance.post('/file/upload', formData, {
+      res = await AxiosInstance.post("/file/upload", formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
-          'auth-token': this.props.currentUser.jwt
+          "Content-Type": "multipart/form-data",
+          "auth-token": this.props.currentUser.jwt,
         },
-        onUploadProgress: ProgressEvent => {
+        onUploadProgress: (ProgressEvent) => {
           this.setState({
             progress: parseInt(
               Math.round(ProgressEvent.loaded * 100) / ProgressEvent.total
-            )
-          })
-        }
-      })
+            ),
+          });
+        },
+      });
       if (this.wavesurfer) {
-        this.wavesurfer.empty()
+        this.wavesurfer.empty();
       }
+      const { filename, filepath, savedFile } = res.data;
+
       this.setState({
-        file: '',
-        filename: 'Choose File',
-        fileOriginName: '',
-        filepath: '',
+        file: "",
+        filename: "Choose File",
+        fileOriginName: "",
+        filepath: "",
         progress: 0,
-        success: Boolean,
-        url: '',
+        url: "",
         tags: [],
-        filetype: '',
-        loading: false
-      })
-      document.getElementById('inputfilelabel').value = ''
-
-      const { filename, filepath, savedFile } = res.data
-
-      setTimeout(
-        () =>
-          this.setState({
-            message: ''
-          }),
-        2000
-      )
-
-      this.setState({
+        filetype: "",
+        loading: false,
         filepath: filepath,
-        message: 'File Uploaded',
+        message: "File Uploaded",
         success: true,
-        files: [savedFile, ...this.state.files]
-      })
-      this.props.onUpdate(savedFile)
-      console.log(this.state.files)
+        files: [savedFile, ...this.state.files],
+      });
+      document.getElementById("inputfilelabel").value = "";
+
+      console.log("savedFile ", savedFile);
+      this.props.onUpdate(savedFile);
     } catch (error) {
-      console.error(error)
+      console.info(error.message);
 
       setTimeout(
         () =>
           this.setState({
-            message: ''
+            message: "",
+            success: false,
+            loading: false,
           }),
-        2000
-      )
-      await this.setState({ success: false, loading: false })
+        1000
+      );
 
       if (error.response) {
         if (error.response.status === 500) {
-          console.log('server is down')
-          this.setState({ message: 'Internal Server Error' })
+          console.log("server is down");
+          this.setState({ message: "Internal Server Error" });
         } else {
-          console.log(error.response.data.message)
+          console.log(error.response.data.message);
           if (error.response.data.message) {
-            this.setState({ message: error.response.data.message })
+            this.setState({ message: error.response.data.message });
           }
         }
       }
-      this.setState({ message: error.message })
+      this.setState({ message: error.message });
     }
-  }
+    this.props.togglePick(false);
+  };
 
   handlePlayPause = () => {
     if (this.state.isPlay) {
-      this.setState({ isPlay: false }, newState => {
-        this.wavesurfer.pause()
-      })
+      this.setState({ isPlay: false }, (newState) => {
+        this.wavesurfer.pause();
+      });
     } else {
-      this.setState({ isPlay: true }, newState => {
-        this.wavesurfer.play()
-      })
+      this.setState({ isPlay: true }, (newState) => {
+        this.wavesurfer.play();
+      });
     }
-  }
+  };
 
-  handlecut = async isDownload => {
-    this.setState({ loading: true })
-
+  handlecut = async (isDownload) => {
     const audioSliced = sliceAudioBuffer(
       this.wavesurfer.backend.buffer,
       ~~(
         (this.wavesurfer.backend.buffer.length *
-          this.wavesurfer.regions.list['main'].start) /
+          this.wavesurfer.regions.list["main"].start) /
         this.wavesurfer.backend.getDuration()
       ),
       ~~(
         (this.wavesurfer.backend.buffer.length *
-          this.wavesurfer.regions.list['main'].end) /
+          this.wavesurfer.regions.list["main"].end) /
         this.wavesurfer.backend.getDuration()
       )
-    )
-    console.log('audioSliced', audioSliced)
-    await encode(audioSliced, 'mp3')
-      .then(async file => {
-        console.log('encode')
-        var url = URL.createObjectURL(file)
-        console.log('url ', url)
-        this.setState({ url: url })
-        var myFile = await new File([file], `${this.state.file.name}.mp3`, {
-          lastModified: new Date().now
-        })
+    );
+    var mp3encoder = new lamejs.Mp3Encoder(
+      audioSliced.numberOfChannels,
+      audioSliced.sampleRate,
+      256
+    ); //mono 44.1khz encode to 128kbps
+    var sampleBlockSize = 1152; //can be anything but make it a multiple of 576 to make encoders life easier
+    var leftChannel = new Float32Array(audioSliced.getChannelData(0).length);
 
-        this.setState({ file: myFile }, newState => {
-          if (isDownload) {
-            this.setState({ loading: false })
-            download(url, rename(this.state.file.name, 'mp3'))
-          }
-        })
-      })
-      .catch(e => console.error(e))
-      .then(() => {
-        console.log('processsing finish ')
-        this.setState({ loading: false })
-      })
-  }
+    for (var i = 0; i < audioSliced.getChannelData(0).length; i++) {
+      leftChannel[i] = audioSliced.getChannelData(0)[i] * 32767.5;
+    }
 
-  render () {
-    console.log('progress ', this.state.filetype)
+    var mp3Data = [];
+    for (var i = 0; i < leftChannel.length; i += sampleBlockSize) {
+      var left = leftChannel.subarray(i, i + sampleBlockSize);
+      var mp3buf = mp3encoder.encodeBuffer(left, left);
 
-    // if (!this.props.currentUser) {
-    //   return Router.replace('/signin')
-    // }
+      if (mp3buf.length > 0) {
+        mp3Data.push(mp3buf);
+      }
+    }
+    var mp3buf = mp3encoder.flush(); //finish writing mp3
+    if (mp3buf.length > 0) {
+      mp3Data.push(mp3buf);
+    }
+
+    var blob = new Blob(mp3Data, { type: "audio/mp3" });
+    var myFile = await new File([blob], `${this.state.file.name}`, {
+      lastModified: new Date().now,
+    });
+    var url = window.URL.createObjectURL(blob);
+
+    await this.setState(
+      { url: url, loading: false, file: myFile },
+      (newState) => {
+        if (isDownload) {
+          download(url, rename(this.state.file.name, "mp3"));
+          this.wavesurfer.load(readBlobURL(this.state.file));
+        }
+      }
+    );
+
+    // await encode(audioSliced, "mp3")
+    //   .then(async (file) => {
+    //     console.log("encode");
+    //     var url = URL.createObjectURL(file);
+    //     console.log("url ", url);
+    //     this.setState({ url: url });
+    //     var myFile = await new File([file], `${this.state.file.name}.mp3`, {
+    //       lastModified: new Date().now,
+    //     });
+
+    //     this.setState({ file: myFile }, (newState) => {
+    //       if (isDownload) {
+    //         this.setState({ loading: false });
+    //         download(url, rename(this.state.file.name, "mp3"));
+    //       }
+    //     });
+    //   })
+    //   .catch((e) => console.error(e))
+    //   .then(() => {
+    //     console.log("processsing finish ");
+    //     this.setState({ loading: false });
+    //   });
+  };
+
+  render() {
+    console.log("progress ", this.state.loading);
+
     return (
-      <div className='parent-fileupload'>
-        {this.state.loading && <ParentLoading />}
-        <div className={this.state.filetype === 'audio' ? 'd-block' : 'd-none'}>
-          <div id='waveform' className='wave'></div>
-          <div className='d-flex justify-content-center d-'>
+      <div className="parent-fileupload">
+        <img
+          src="/svg/close.svg"
+          width={40}
+          height={40}
+          className="close-btn"
+          onClick={() => this.props.togglePick(false)}
+        />
+        {this.state.loading ? <ParentLoading /> : null}
+        <div className={this.state.filetype === "audio" ? "d-block" : "d-none"}>
+          <div id="waveform" className="wave"></div>
+          <div className="d-flex justify-content-center d-">
             <button
-              className='btn btn-primary m-1 btn-submit'
+              className="btn btn-primary m-1 btn-submit"
               onClick={this.handlePlayPause}
             >
-              {this.state.isPlay ? 'Pause' : 'Play'}
+              {this.state.isPlay ? "Pause" : "Play"}
             </button>
             <button
-              className='btn btn-primary m-1 btn-submit'
+              className="btn btn-primary m-1 btn-submit"
               onClick={() => this.handlecut(true)}
             >
               Download
@@ -382,84 +370,76 @@ class FileuploadComponent extends Component {
           </div>
         </div>
 
-        {this.state.filetype === 'image' && (
-          <div className='row mt-5 align-self-center'>
-            <div className='m-auto'>
+        {this.props.isUp}
+
+        {this.state.filetype === "image" && (
+          <div className="row mt-5 align-self-center">
+            <div className="m-auto">
               <img
                 // src={`${process.env.PUBLIC_URL}${this.state.filepath}`}
                 src={this.state.url}
                 alt={this.state.filename}
-                className='col-12 my-3 col-md-6 preview card'
+                className="col-12 my-3 col-md-6 preview card"
               />
             </div>
           </div>
         )}
 
         {/* <button onClick={}></button> */}
-        <form className='d-flex flex-column '>
-          <div className='custom-file mt-4 form-control form-cntrol-lg'>
-            <label className='custom-file-label' htmlFor='validatedCustomFile'>
-              {this.state.filename}
+        <form className="d-flex flex-column ">
+          <div className="form-group mt-4">
+            <label style={{ color: "white" }} htmlFor="inputFileName">
+              File Name
             </label>
             <input
-              multiple
-              type='file'
-              className='custom-file-input'
-              id='validatedCustomFile'
-              onChange={this.onChageInput}
-              maxLength={10}
-              required
-            />
-          </div>
-          <div className='form-group mt-4'>
-            <label htmlFor='inputFileName'>File Name</label>
-            <input
-              maxLength='10'
+              maxLength="10"
               value={this.state.fileOriginName}
               onChange={this.onChangeFileName}
-              type='text'
-              className='form-control'
-              id='inputFileName'
-              aria-describedby='Enter File Related Name'
-              placeholder='Enter file name'
+              type="text"
+              className="form-control"
+              id="inputFileName"
+              aria-describedby="Enter File Related Name"
+              placeholder="Enter file name"
               required
             />
-            <small id='emailHelp' className='form-text text-muted'>
+            <small id="emailHelp" className="form-text text-white">
               Enter File Related Name.
             </small>
           </div>
-          <div className='form-group'>
-            <label htmlFor='inputfilelabel'>File Tags</label>
-            <div className='tag-list'>
+          <div className="form-group">
+            <label style={{ color: "white" }} htmlFor="inputfilelabel">
+              File Tags
+            </label>
+            <div className="tag-list">
               {this.state.tags.map((tag, index) => {
                 return (
-                  <Tag key={index} removeTag={tag => this.removeTag(tag)}>
+                  <Tag key={index} removeTag={(tag) => this.removeTag(tag)}>
                     {tag}
                   </Tag>
-                )
+                );
               })}
             </div>
             <input
-              type='text'
-              className='form-control'
-              id='inputfilelabel'
-              aria-describedby='Enter Media Related Tag'
-              placeholder='Enter Media Tag'
+              type="text"
+              className="form-control"
+              id="inputfilelabel"
+              aria-describedby="Enter Media Related Tag"
+              placeholder="Enter Media Tag"
               onKeyPress={this.onTagKeyPress}
             />
-            <small id='emailHelp' className='form-text text-muted'>
+            <small id="emailHelp" className="form-text text-white">
               Enter File Related Tag seperate by Spacebar
             </small>
 
-            <div className='cat-parent'>
+            <div className="cat-parent">
               {all.map((cat, index) => (
                 <div
-                  className='badge badge-pill cat'
+                  className="badge badge-pill cat"
                   key={index}
                   onClick={() => {
-                    this.setState(preState => ({
-                      tags: [...preState.tags, cat]
-                    }))
+                    this.setState((preState) => ({
+                      tags: [...preState.tags, cat],
+                    }));
                   }}
                 >
                   {cat}
@@ -477,30 +457,36 @@ class FileuploadComponent extends Component {
           />
 
           <input
-            type='button'
-            onClick={this.onSubmit}
-            value='Upload'
-            className='btn btn-primary m-1 btn-submit'
+            type="button"
+            onClick={this.onHandleSubmit}
+            value="Upload"
+            className="btn btn-primary m-1 btn-submit"
           />
         </form>
-        <hr className='divider mt-5' />
+        <hr className="divider mt-5" />
       </div>
-    )
+    );
   }
 }
 
-const Tag = props => {
+const Tag = (props) => {
   return (
     <div
-      className='badge badge-pill badge-success tag'
+      className="badge badge-pill badge-success tag"
       onClick={() => props.removeTag(props.children)}
     >
-      <h6 className='m-auto'>{props.children}</h6>
-      <img src='/svg/close.svg' alt='close' className='ml-2' width={20} height={20} />
+      <h6 className="m-auto">{props.children}</h6>
+      <img
+        src="/svg/close.svg"
+        alt="close"
+        className="ml-2"
+        width={20}
+        height={20}
+      />
     </div>
-  )
-}
+  );
+};
 
 // const mapStateToProps = state => ({})
 
-export default connect(null, null)(FileuploadComponent)
+export default connect(null, null)(FileuploadComponent);
