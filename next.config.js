@@ -12,8 +12,8 @@ module.exports = withImages({
     JWT_SECRET: "Paladiya",
     NAME_SPACE: "Mobile69.in",
     // PUBLIC_URL: 'http://mobile69.in',
-    // PUBLIC_URL: "http://192.168.100.9:3000/api",
-    PUBLIC_URL: "https://mobile69.in/api",
+    PUBLIC_URL: "http://192.168.100.9:3000/api",
+    // PUBLIC_URL: "https://mobile69.in/api",
     DOMAIN: "https://mobile69.in",
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
