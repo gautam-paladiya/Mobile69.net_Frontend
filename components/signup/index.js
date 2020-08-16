@@ -40,7 +40,7 @@ export default function SignupComponent(props) {
       })
       .catch((err) => {
         console.dir(err);
-        setError(error.response.data.message);
+        setError(err.response.data.message);
       })
       .then(() => {
         setLoading(false);
