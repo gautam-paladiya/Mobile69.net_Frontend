@@ -50,7 +50,6 @@ export default function LoginComponent() {
           }
         })
         .catch((error) => {
-          console.log(error);
           setError(catchError(error));
         })
         .then(() => {

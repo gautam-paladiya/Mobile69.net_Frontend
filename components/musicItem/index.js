@@ -1,96 +1,95 @@
-import React, { Component } from 'react'
-import Link from 'next/link'
-import { connect } from 'react-redux'
-import { play, pause } from '../../redux/music/musicAction'
-import { CircularProgressbar } from 'react-circular-progressbar'
-import Img from 'react-image'
-import MusicSpinner from '../../utils/MusicSpinner'
-import { AxiosInstance } from '../../utils/Helper'
+import React, { Component } from "react";
+import Link from "next/link";
+import { connect } from "react-redux";
+import { play, pause } from "../../redux/music/musicAction";
+import { CircularProgressbar } from "react-circular-progressbar";
+import Img from "react-image";
+import MusicSpinner from "../../utils/MusicSpinner";
+import { AxiosInstance } from "../../utils/Helper";
 // import Trianglify from 'react-trianglify'
-import dynamic from 'next/dynamic'
-const Trianglify = dynamic(()=>import('react-trianglify'),{
-  ssr:false
-})
-import pauseIcon from '../../assets/img/pause.png'
-import playIcon from '../../assets/img/play.png'
+import dynamic from "next/dynamic";
+const Trianglify = dynamic(() => import("react-trianglify"), {
+  ssr: false,
+});
+import pauseIcon from "../../assets/img/pause.png";
+import playIcon from "../../assets/img/play.png";
 
 class MusicItem extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       audioPercent: 0,
       loading: false,
-      imgLoading: false
-    }
+      imgLoading: false,
+    };
   }
 
-  componentWillUnmount () {
-    this.props.dispatch(pause(this.props.playId))
+  componentWillUnmount() {
+    this.props.dispatch(pause(this.props.playId));
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     // console.log('shouldComponentUpdate props',nextProps);
     // console.log('shouldComponentUpdate state',nextState);
     // console.log(this.props, this.state);
-    if(nextProps.playId===nextProps.item._id)
-    {
-      return true
+    if (nextProps.playId === nextProps.item._id) {
+      return true;
     }
-    return false;  
+    return false;
   }
 
-  deleteImage = async id => {
+  deleteImage = async (id) => {
     const result = await AxiosInstance.post(
       `/post/delete`,
       { id: id },
       {
         headers: {
-          'auth-token': this.props.currentUser.jwt
-        }
+          "auth-token": this.props.currentUser.jwt,
+        },
       }
-    )
-    console.log(result)
+    );
+    console.log(result);
     if (result.status === 200) {
-      return id
+      return id;
     }
-    console.log(result)
-  }
+    console.log(result);
+  };
 
-  onHandleEnded = id => {
-    this.props.dispatch(pause(id))
-  }
-  onPlay = async id => {
-    if (document.querySelectorAll('audio').length > 0) {
-      for (const audio of document.querySelectorAll('audio')) {
-        audio.pause()
+  onHandleEnded = (id) => {
+    this.props.dispatch(pause(id));
+  };
+  onPlay = async (id) => {
+    if (document.querySelectorAll("audio").length > 0) {
+      for (const audio of document.querySelectorAll("audio")) {
+        audio.pause();
       }
     }
-    this.setState({ loading: true })
-    this.audio.play()
-  }
+    this.setState({ loading: true });
+    this.audio.play();
+  };
 
-  onHandlePlay = id => {
-    console.log('handle play')
-    this.setState({ loading: false })
-    this.props.dispatch(play(id))
-  }
+  onHandlePlay = (id) => {
+    console.log("handle play");
+    this.setState({ loading: false });
+    this.props.dispatch(play(id));
+  };
 
-  onPause = id => {
-    this.audio.pause()
-  }
+  onPause = (id) => {
+    this.audio.pause();
+  };
 
-  onHandlePause = id => {
-    this.props.dispatch(pause(id))
-  }
+  onHandlePause = (id) => {
+    this.props.dispatch(pause(id));
+  };
 
-  onHandleTimeUpdate = event => {
-    var currentTime = this.audio.currentTime
-    var duration = this.audio.duration
-    var percent = (currentTime * 100) / duration
-    this.setState({ audioPercent: percent })
-  }
+  onHandleTimeUpdate = (event) => {
+    var currentTime = this.audio.currentTime;
+    var duration = this.audio.duration;
+    var percent = (currentTime * 100) / duration;
+    this.setState({ audioPercent: percent });
+  };
 
-  componentDidMount () {
+  componentDidMount() {
     // if (!this.props.item.pattern) {
     //   this.setState({
     //     pattern: TrianglifyGenerate()
@@ -100,22 +99,22 @@ class MusicItem extends Component {
     // }
   }
 
-  render () {
+  render() {
     return (
       <div className={`${this.props.col}  list-item align-self-center`}>
         <audio
-          preload='auto'
-          ref={audio => (this.audio = audio)}
-          id='audio'
-          src={process.env.PUBLIC_URL + '/music/' + this.props.item.fileName}
+          preload="auto"
+          ref={(audio) => (this.audio = audio)}
+          id="audio"
+          src={process.env.PUBLIC_URL + "/music/" + this.props.item.fileName}
           onEnded={() => this.onHandleEnded(this.props.item._id)}
           onPlay={() => this.onHandlePlay(this.props.item._id)}
           onPause={() => this.onHandlePause(this.props.item._id)}
           onTimeUpdate={this.onHandleTimeUpdate}
         />
 
-        <div className='card d-flex justify-content-center align-items flex-column'>
-          <Link href='/detail/[id]' as={`/detail/${this.props.item._id}`}>
+        <div className="card d-flex justify-content-center align-items flex-column">
+          <Link href="/detail/[id]" as={`/detail/${this.props.item._id}`}>
             <div>
               {/* <Img
                 id='trianglify'
@@ -127,83 +126,83 @@ class MusicItem extends Component {
                 }
                 onLoad={() => this.setState({ imgLoading: true })}
               /> */}
-              <div className='img-cover card-img'>
+              <div className="img-cover card-img">
                 <Trianglify />
               </div>
 
               {this.props.name && (
-                <h5 className='card-title'>{this.props.item.fileOriginName}</h5>
+                <h5 className="card-title">{this.props.item.fileOriginName}</h5>
               )}
             </div>
           </Link>
 
           {this.state.loading ? (
-            <div className='parent-media progress'>
-              <MusicSpinner className='progress' />
+            <div className="parent-media progress">
+              <MusicSpinner className="progress" />
             </div>
           ) : (
             <CircularProgressbar
-              className='w-5 h-5 progress'
+              className="w-5 h-5 progress"
               value={this.state.audioPercent}
             />
           )}
 
           {this.props.delete && (
             <img
-              alt='close'
-              className='btn-close'
-              src='/svg/close.svg'
+              alt="close"
+              className="btn-close"
+              src="/svg/close.svg"
               width={25}
               height={25}
               onClick={async () => {
-                let deleteId = await this.deleteImage(this.props.item._id)
-                this.props.updateGallery(deleteId)
+                let deleteId = await this.deleteImage(this.props.item._id);
+                this.props.updateGallery(deleteId);
               }}
             />
           )}
 
           {this.props.download && (
-            <div className='download'>
-              <h5 className='file-text text-primary '>
+            <div className="download">
+              <h5 className="file-text text-primary ">
                 <img
-                  alt='Download'
-                  src='/svg/download.svg'
-                  className='ml-4 mr-2 align-self-center text-primary'
+                  alt="Download"
+                  src="/svg/download.svg"
+                  className="ml-4 mr-2 align-self-center text-primary"
                 />
               </h5>
 
-              <h5 className='file-text text-primary '>
+              <h5 className="file-text text-primary ">
                 {this.props.item.downloads}
               </h5>
             </div>
           )}
-          <div className='card-img-overlay parent-media'>
+          <div className="card-img-overlay parent-media">
             {this.props.isPlaying &&
             this.props.playId === this.props.item._id ? (
               <img
-                alt='pause'
+                alt="pause"
                 src={pauseIcon}
                 onClick={() => this.onPause(this.props.item._id)}
-                className='img-media'
+                className="img-media"
               />
             ) : (
               <img
-                alt='play'
+                alt="play"
                 src={playIcon}
                 onClick={() => this.onPlay(this.props.item._id)}
-                className='img-media'
+                className="img-media"
               />
             )}
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProsp = state => ({
+const mapStateToProsp = (state) => ({
   isPlaying: state.entity.music.isPlaying,
-  playId: state.entity.music.itemId
-})
+  playId: state.entity.music.itemId,
+});
 
-export default connect(mapStateToProsp)(MusicItem)
+export default connect(mapStateToProsp)(MusicItem);

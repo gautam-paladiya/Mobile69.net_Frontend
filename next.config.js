@@ -11,7 +11,7 @@ module.exports = withImages({
     MONGO_ADMIN: "admin",
     JWT_SECRET: "Paladiya",
     NAME_SPACE: "Mobile69.in",
-    // PUBLIC_URL: 'http://mobile69.in',
+    // PUBLIC_URL: "http://mobile69.in",
     // PUBLIC_URL: "http://192.168.100.9:3000/api",
     PUBLIC_URL: "https://mobile69.in/api",
     DOMAIN: "https://mobile69.in",

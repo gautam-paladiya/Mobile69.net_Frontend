@@ -39,7 +39,8 @@ export default function SignupComponent(props) {
         }
       })
       .catch((err) => {
-        console.dir(err);
+        console.log(err);
+        console.log(err.response);
         setError(err.response.data.message);
       })
       .then(() => {

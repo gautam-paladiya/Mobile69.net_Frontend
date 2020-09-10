@@ -1,33 +1,33 @@
 .slider {
-	z-index: 9;
-	position: fixed;
-	top: 0px;
-	right: 0px;
-	background: #c0c0c05e !important;
-	justify-content: end;
-	height: 100vh;
-	width: 100vw !important;
+  z-index: 9;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  background: #c0c0c05e !important;
+  justify-content: end;
+  height: 100vh;
+  width: 100vw !important;
 
-	.content {
-		font-size: 20px;
-		height: 100vh;
-		position: fixed;
-		top: 0px;
-		right: 0px;
-		background: black;
-		display: flex;
-		flex-direction: column;
-		justify-content: left;
-		align-self: start;
-		margin-left: 10px;
-	}
+  .content {
+    font-size: 20px;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-self: start;
+    margin-left: 10px;
+  }
+}
 
-	.con-item {
-		font-style: bold;
-		font-weight: 600;
-		font-size: 18px;
-		cursor: pointer;
-		padding: 5px;
-		text-decoration: none;
-	}
+.con-item {
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px;
+  text-decoration: none !important;
+  color: black;
 }

@@ -29,34 +29,35 @@ class ItemOverViewComponent extends Component {
     console.log(this.props.location);
   }
 
-  // fetchPost = async () => {
-  //   const result = await AxiosInstance.post('/post/getpost', {
-  //     itemId: this.props.id
-  //   })
-  //   console.log('file ', result)
+  fetchPost = async () => {
+    const result = await AxiosInstance.post("/post/findRelatedWallpapers", {
+      tags: this.props.item.tags,
+      pageNum: 1,
+    });
+    console.log("file ", result);
 
-  //   if (result) {
-  //     if (result.data.status == 200) {
-  //       // if (result.data.post.types === 'music') {
-  //       //   this.setState({
-  //       //     post: {
-  //       //       ...result.data.post,
-  //       //       pattern: TrianglifyGenerate()
-  //       //         .canvas()
-  //       //         .toDataURL()
-  //       //     }
-  //       //   })
+    if (result) {
+      if (result.data.status == 200) {
+        // if (result.data.post.types === 'music') {
+        //   this.setState({
+        //     post: {
+        //       ...result.data.post,
+        //       pattern: TrianglifyGenerate()
+        //         .canvas()
+        //         .toDataURL()
+        //     }
+        //   })
 
-  //       //   return
-  //       // }
-  //       this.setState({
-  //         post: result.data.post
-  //       })
-  //     } else {
-  //       this.setState({ pageFound: false })
-  //     }
-  //   }
-  // }
+        //   return
+        // }
+        this.setState({
+          post: result.data.post,
+        });
+      } else {
+        this.setState({ pageFound: false });
+      }
+    }
+  };
 
   plusDownload = async (event) => {
     const result = await AxiosInstance.post("/post/plusDownload", {

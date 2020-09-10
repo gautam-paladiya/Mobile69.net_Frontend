@@ -1,14 +1,18 @@
-import React, { Component, useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { getIsAuthenticated, handleLogout } from "../../utils/AuthService ";
 import { useRouter } from "next/router";
 import closeIcon from "../../assets/svg/close.svg";
+import AndroidIcon from "../../assets/img/androidIcon.png";
+import IosIcon from "../../assets/svg/ios.svg";
 
 function Slider(props) {
   const handleSignin = () => {
     getIsAuthenticated() && handleLogout();
     props.toggleSlider();
   };
+
+  const _handleAndroid = () => {};
 
   console.log("authenticate", getIsAuthenticated());
   return (
@@ -17,47 +21,84 @@ function Slider(props) {
         <img
           alt="close"
           src={closeIcon}
-          width={50}
-          height={50}
-          className="text-white py-2 align-self-start "
+          width={40}
+          height={40}
+          className="text-black py-2 align-self-start "
           onClick={() => props.toggleSlider()}
         />
 
-        <h5 className="text-muted  ">Content</h5>
+        <h6 className="text-muted">Content</h6>
         <div className="d-flex flex-column category">
-          <div className="con-item text-left text-white">
-            <h5>
-              <Link href="/all">All</Link>
-            </h5>
-          </div>
+          <Link href="/all">
+            <div className="con-item">Home</div>
+          </Link>
 
-          <div className="con-item text-left text-white">
-            <h5>
-              <Link href="/wallpapers">Wallpaper</Link>
-            </h5>
-          </div>
+          <Link href="/wallpapers">
+            <div className="con-item">Wallpapers</div>
+          </Link>
 
-          <div className="con-item text-left text-white">
-            <h5>
-              <Link href="/ringtones">Ringtone</Link>
-            </h5>
-          </div>
+          <Link href="/ringtones">
+            <div className="con-item">Ringtones</div>
+          </Link>
         </div>
-        <h5 className="text-muted py-2">Share Your Content</h5>
+        <h6 className="text-muted py-2">Share Your Content</h6>
         <div className="d-flex flex-column justify-content-left">
           <Link href="/uploads">
-            <button type="button" className="btn btn-primary">
+            <button
+              type="button"
+              style={{
+                fontSize: 20,
+                textDecorationStyle: "double",
+                fontWeight: "bold",
+                borderRadius: 20,
+                padding: 5,
+                margin: 10,
+              }}
+              className="btn btn-primary"
+            >
               Uploads
             </button>
           </Link>
         </div>
-        <button
-          type="button"
-          onClick={handleSignin}
-          className="btn btn-outline-danger my-4"
-        >
-          {getIsAuthenticated() === "true" ? "Logout" : "Login"}
-        </button>
+        {getIsAuthenticated() === "true" && (
+          <button
+            type="button"
+            onClick={handleSignin}
+            className="btn btn-outline-danger my-4"
+            style={{
+              fontSize: 20,
+              textDecorationStyle: "double",
+              fontWeight: "bold",
+            }}
+          >
+            Logout
+          </button>
+        )}
+
+        <h6 className="text-muted py-2">Get the app</h6>
+        <a href="/" style={{ margin: 5 }}>
+          <img
+            alt="Google play store"
+            src={AndroidIcon}
+            width={135}
+            height={40}
+          />
+        </a>
+
+        <a href="/" style={{ margin: 5 }}>
+          <img alt="Apple store" src={IosIcon} width={135} height={40} />
+        </a>
+
+        <h6 className="text-muted py-2 mt-2">Important info</h6>
+        <a href="/privacy" target="_blank" className="con-item">
+          Privacy
+        </a>
+        <a href="/terms" target="_blank" className="con-item">
+          Terms &amp; Condition
+        </a>
+        <a href="/copyright" target="_blank" className="con-item">
+          DMCA/Copyright
+        </a>
       </div>
     </div>
   );
