@@ -54,10 +54,15 @@ function Header(props) {
       <div className="header-parent flex-column flex-md-row">
         <div className="col-md-3 logo menu">
           <Link href="/" replace>
-            <img src="/img/logo.png" alt={process.env.NAME_SPACE} />
+            <img
+              src="/img/logo.png"
+              width={160}
+              height={75}
+              alt={process.env.NAME_SPACE}
+            />
           </Link>
         </div>
-        <div className="col-md-6 col-14 menu">
+        <div className="col-md-6 col-11 menu">
           <div className="input-group md-form sm-form form-sm form-1 pl-0">
             <input
               id="input"
@@ -68,6 +73,7 @@ function Header(props) {
               onKeyPress={handleKeyPress}
               onChange={handleInputChange}
               value={searchTerm}
+              style={{ fontSize: 18 }}
             />
             <div className="input-group-prepend">
               <span

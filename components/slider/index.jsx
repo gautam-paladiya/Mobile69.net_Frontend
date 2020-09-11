@@ -12,9 +12,6 @@ function Slider(props) {
     props.toggleSlider();
   };
 
-  const _handleAndroid = () => {};
-
-  console.log("authenticate", getIsAuthenticated());
   return (
     <div className="slider" onClick={() => props.toggleSlider()}>
       <div className="content text-left col-md-3 col-sm-12 ">
@@ -69,6 +66,10 @@ function Slider(props) {
               fontSize: 20,
               textDecorationStyle: "double",
               fontWeight: "bold",
+              borderRadius: 20,
+              padding: 5,
+              margin: 10,
+              marginTop: 5,
             }}
           >
             Logout
@@ -76,7 +77,7 @@ function Slider(props) {
         )}
 
         <h6 className="text-muted py-2">Get the app</h6>
-        <a href="/" style={{ margin: 5 }}>
+        <a href={`${process.env.ANDROID_ID}`} style={{ margin: 5 }}>
           <img
             alt="Google play store"
             src={AndroidIcon}
@@ -85,7 +86,7 @@ function Slider(props) {
           />
         </a>
 
-        <a href="/" style={{ margin: 5 }}>
+        <a href={`${process.env.IOS_ID}`} style={{ margin: 5 }}>
           <img alt="Apple store" src={IosIcon} width={135} height={40} />
         </a>
 

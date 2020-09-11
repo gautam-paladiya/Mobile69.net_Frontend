@@ -1,5 +1,8 @@
 import { CircularProgressbar } from "react-circular-progressbar";
 import { useState } from "react";
+import AndroidIcon from "../../assets/img/androidIcon.png";
+import IosIcon from "../../assets/svg/ios.svg";
+
 export default function CountDown(props) {
   var total = 3;
   const [timeleft, setTimeLeft] = useState(total);
@@ -38,19 +41,15 @@ export default function CountDown(props) {
         />
         <h4>{`Download ${process.env.NAME_SPACE} Ringtones & Wallpapers`}</h4>
         <div className="mt-2">
-          <a href="https://mobile69.in/" target="_blank">
+          <a href={`${process.env.ANDROID_ID}`} target="_blank">
             <img
               className="col-md-6 col-6"
-              src="https://marketing.zobj.net/assets/promo_android.bd418e45e019a7693193d55ec7d930f4.png"
+              src={AndroidIcon}
               alt="Google play store"
             />
           </a>
-          <a href="https://mobile69.in/" target="_blank">
-            <img
-              className="col-md-6 col-6"
-              src="https://marketing.zobj.net/assets/promo_apple.9ab2a5dcc3cace1b3166574cf1cb3648.svg"
-              alt="Apple store"
-            />
+          <a href={`${process.env.IOS_ID}`} target="_blank">
+            <img className="col-md-6 col-6" src={IosIcon} alt="Apple store" />
           </a>
         </div>
         <h5 className="mt-2">OR Wait for</h5>

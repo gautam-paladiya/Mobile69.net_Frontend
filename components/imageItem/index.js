@@ -1,8 +1,10 @@
 import Img from "react-image";
 import Link from "next/link";
 import { AxiosInstance } from "../../utils/Helper";
+import { useRef } from "react";
 
 const ImageItem = (props) => {
+  var imgRef = useRef(null);
   const deleteImage = async (id) => {
     const result = await AxiosInstance.post(
       "/post/delete",
@@ -26,7 +28,7 @@ const ImageItem = (props) => {
           <Img
             alt={`${props.item.fileOriginName}`}
             className="card-img img-cover"
-            src={`${process.env.PUBLIC_URL}/${props.item.types}/resize/${props.item.fileName}`}
+            src={`${process.env.PUBLIC_URL}/resize/${props.item.fileName}`}
             // loader={<GridLoader size={20} margin={10} />}
             // unloader={<GridLoader size={20} margin={10} />}
           />

@@ -9,6 +9,8 @@ import MusicOverView from "../musicoverview";
 import download from "../../utils/Downloads";
 import Link from "next/link";
 import ParentLoading from "../parentLoading";
+import ImageItem from "../imageItem";
+import MusicItem from "../musicItem";
 
 class ItemOverViewComponent extends Component {
   constructor(props) {
@@ -21,13 +23,68 @@ class ItemOverViewComponent extends Component {
       sharePopup: false,
       isZoom: false,
       countDown: false,
+      posts: [],
+      loading: true,
+      isLast: false,
+      pageNum: 1,
     };
     this.myRef = React.createRef();
   }
 
   componentDidMount() {
-    console.log(this.props.location);
+    this.getData();
   }
+
+  getData = () => {
+    if (!this.state.isLast) {
+      try {
+        AxiosInstance.post(
+          `/post/${
+            this.state.post.types === "image"
+              ? "findRelatedWallpapers"
+              : "findRelatedRingtones"
+          }`,
+          JSON.stringify({
+            pageNum: this.state.pageNum,
+            tags: this.state.post.fileTags,
+          }),
+          {
+            headers: {
+              // Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        ).then(async (json) => {
+          if (json.data.files && json.status == 200) {
+            if (this.state.pageNum === 1) {
+              var filterFiles = json.data.files.filter(
+                (post) => post._id != this.state.post._id
+              );
+              // filterFiles.unshift(this.state.post);
+              await this.setState({
+                posts: filterFiles,
+                loading: false,
+                isLast: json.data.isLast,
+              });
+            } else {
+              await this.setState({
+                posts: [...this.state.posts, ...json.data.files],
+                loading: false,
+                isLast: json.data.isLast,
+              });
+            }
+            console.log("posts", this.state.posts);
+          } else {
+            await this.setState({
+              loading: false,
+            });
+          }
+        });
+      } catch (error) {
+        console.log("error", error);
+      }
+    }
+  };
 
   fetchPost = async () => {
     const result = await AxiosInstance.post("/post/findRelatedWallpapers", {
@@ -65,6 +122,9 @@ class ItemOverViewComponent extends Component {
     });
     if (result) {
       if (result.data.status == 200) {
+        var newPost = this.state.post;
+        newPost.downloads++;
+        this.setState({ post: newPost });
       }
     }
     const shareData = {
@@ -139,7 +199,7 @@ class ItemOverViewComponent extends Component {
                       alt="profile"
                     />
                     <div className="d-flex flex-column">
-                      <div className="d-flex align-items-center">
+                      <div className="d-flex align-items-center justify-content-between">
                         <h5 className="file-text">
                           {this.state.post.fileOriginName}
                         </h5>
@@ -213,6 +273,40 @@ class ItemOverViewComponent extends Component {
               />
             )}
           </div>
+
+          <div className="parent-dir">
+            <div className="directory-list">
+              {this.state.posts.map((item, index) => {
+                switch (item.types) {
+                  case "image":
+                    return (
+                      <ImageItem
+                        key={index}
+                        item={item}
+                        isActive={true}
+                        name={true}
+                        col="col-md-2 col-4"
+                      />
+                    );
+                    break;
+                  case "music":
+                    return (
+                      <MusicItem
+                        key={index}
+                        item={item}
+                        isActive={true}
+                        name={true}
+                        col="col-md-2 col-4"
+                      />
+                    );
+
+                  default:
+                    return null;
+                }
+              })}
+            </div>
+          </div>
+
           {this.state.sharePopup && (
             <SharePopup
               shareLink={`${window.location.href}`}

@@ -11,6 +11,7 @@
   .left {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
   .img-profile {
     border-radius: 50%;
@@ -59,6 +60,7 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    margin-bottom: 50px;
   }
   // @media (max-width: 575.98px) {
   // 	.media {

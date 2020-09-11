@@ -20,6 +20,8 @@
     justify-content: left;
     align-self: start;
     margin-left: 10px;
+    overflow-y: scroll !important;
+    scrollbar-width: none;
   }
 }
 
