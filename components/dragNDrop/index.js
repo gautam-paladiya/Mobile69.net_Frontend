@@ -112,7 +112,7 @@ class DragNDrop extends React.Component {
                   <h4 style={{ color: "white" }}>OR CHOOSE FILE</h4>
                   <h6 style={{ color: "white", marginTop: "20px" }}>
                     By selecting 'Upload' you are representing that this item is
-                    not obscene and does not otherwise violate Mobile69.in's
+                    not obscene and does not otherwise violate mobile69.net's
                     Terms of Service, and that you own all copyrights to this
                     item or have express permission from the copyright owner(s)
                     to upload it. Before uploading, please read our Community

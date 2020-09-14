@@ -77,7 +77,7 @@ class Privacy extends React.Component {
             </li>
             <li>
               <strong>Website</strong> refers to Mobile69, accessible from
-              http://www.mobile69.in
+              http://www.mobile69.net
             </li>{" "}
             <li>
               <strong>Service</strong> refers to the Website.

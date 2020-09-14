@@ -103,7 +103,7 @@ class MusicItem extends Component {
     return (
       <div className={`${this.props.col}  list-item align-self-center`}>
         <audio
-          preload="auto"
+          // preload="auto"
           ref={(audio) => (this.audio = audio)}
           id="audio"
           src={process.env.PUBLIC_URL + "/music/" + this.props.item.fileName}

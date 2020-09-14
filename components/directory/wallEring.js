@@ -8,11 +8,11 @@ import { Spinner } from "react-bootstrap";
 //   loading: () => <Spinner animation='grow' />
 // })
 import ImageItem from "../imageItem";
-import MusicItem from "../musicItem";
-// const MusicItem = dynamic(() => import('../musicItem'), {
-//   ssr: false,
-//   loading: () => <Spinner animation='grow' />
-// })
+// import MusicItem from "../musicItem";
+const MusicItem = dynamic(() => import("../musicItem"), {
+  ssr: false,
+  loading: () => <Spinner animation="grow" />,
+});
 
 import { useDispatch, useSelector } from "react-redux";
 import {

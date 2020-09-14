@@ -19,7 +19,7 @@ export default class Terms extends Component {
           <p>
             {" "}
             These Terms of Service explain your rights and obligations in using
-            the websites including but not limited to, www.Mobile69.in,
+            the websites including but not limited to, www.mobile69.net,
             ("Website") and mobile applications ("Mobile Apps") of Mobile69, its
             subsidiaries, parents and affiliates ("Mobile69"). We refer to our
             Website visitors and Mobile App users as users ("Users") of
