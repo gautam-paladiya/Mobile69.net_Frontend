@@ -57,11 +57,7 @@ class UploadPage extends React.Component {
         <Head>
           <script src="https://unpkg.com/wavesurfer.js"></script>
           <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
-          {/* <script
-            src="/dist/worker.js"
-            type="text/js-worker"
-            x-audio-encode="true"
-          ></script> */}
+
           <script src="/dist/index.js"></script>
         </Head>
         <div className="mx-3  position-relative">

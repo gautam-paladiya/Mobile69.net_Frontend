@@ -3,10 +3,8 @@ import Link from "next/link";
 import { connect } from "react-redux";
 import { play, pause } from "../../redux/music/musicAction";
 import { CircularProgressbar } from "react-circular-progressbar";
-import Img from "react-image";
 import MusicSpinner from "../../utils/MusicSpinner";
 import { AxiosInstance } from "../../utils/Helper";
-// import Trianglify from 'react-trianglify'
 import dynamic from "next/dynamic";
 const Trianglify = dynamic(() => import("react-trianglify"), {
   ssr: false,

@@ -8,6 +8,10 @@ import { wrapper } from "../redux/store";
 import { connect } from "react-redux";
 import CookieConsent, { Cookies } from "react-cookie-consent";
 import Link from "next/link";
+import Head from "next/head";
+import RootHead from "../components/head/RootHead";
+import Cookie from "js-cookie";
+
 var MobileDetect = require("mobile-detect");
 
 class Home extends React.Component {
@@ -20,22 +24,37 @@ class Home extends React.Component {
     return (
       <Layout canonical="all">
         <div className=".homepage">
+          <Head>
+            <RootHead />
+          </Head>
           <Navigation />
           <WallERing />
         </div>
-        {/* <CookieConsent
-            className='position-fixed position-absolute bottom-0'
-            disableStyles={true}
-            location='bottom'
-            buttonClasses='btn btn-primary'
-            containerClasses='alert alert-warning col-lg-12'
-            contentClasses='text-capitalize'
+        {Cookie.get("mobile69_cookie") || (
+          <CookieConsent
+            enableDeclineButton
+            location="bottom"
+            buttonText="Accept"
+            cookieName="mobile69_cookie"
+            style={{ background: "#2B373B" }}
+            buttonStyle={{
+              color: "#4e503b",
+              fontSize: "17px",
+              borderRadios: "5px",
+              fontWeight: "bold",
+            }}
+            expires={150}
+            onAccept={() => {
+              Cookie.set("mobile69_cookie", true);
+            }}
           >
-            This website uses cookies to enhance the user experience.{' '}
-            <span style={{ fontSize: '10px' }}>
-              <Link href='/privacy'>Read more</Link>
+            Mobile69 uses cookies to improve the browsing experience and serve
+            personalized ads.
+            <span>
+              <Link href="/privacy"> Read more</Link>
             </span>
-          </CookieConsent> */}
+          </CookieConsent>
+        )}
       </Layout>
     );
   }

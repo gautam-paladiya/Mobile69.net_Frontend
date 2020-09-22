@@ -1,6 +1,5 @@
 // import TrianglifyGenerate from '../Util/Trianglify'
 import { RingLoader } from "react-spinners";
-import InfiniteScroll from "react-infinite-scroll-component";
 import dynamic from "next/dynamic";
 import { Spinner } from "react-bootstrap";
 // const ImageItem = dynamic(() => import('../imageItem'), {

@@ -6,54 +6,22 @@ import { connect } from "react-redux";
 import { AxiosInstance } from "../../../utils/Helper";
 
 import Head from "next/head";
+import FacebookHead from "../../../components/head/FacebookHead";
+import TwitterHead from "../../../components/head/TwitterHead";
+import RootHead from "../../../components/head/RootHead";
 
 class DetailPage extends React.Component {
   render() {
     console.log("DetailPage", this.props);
     const { post, pageFound } = this.props;
+    console.log("DetailPage", post.types === "image");
+
     return (
       <Layout title={post.fileOriginName}>
         <Head>
-          <meta
-            name="title"
-            content="Free download mobile Ringtones and wallpapers"
-          />
-          <meta
-            name="description"
-            content={`Search free  wallpapers, ringtones and notifications on ${process.env.NAME_SPACE}  and personalize your phone to suit you. Start your search now and free your phone`}
-          />
-
-          <meta
-            property="og:url"
-            content={`${process.env.DOMAIN}/detail/${post._id}`}
-          />
-          <meta property="og:title" content={post.fileOriginName} />
-          <meta
-            property="og:description"
-            content="Download free Latest Ringtones and HD, mobile,  wallaper  Free on Mobile69. billion s of popular wallpaper and ringtones on mobile69 personalize your phone to suit you Browse our Content for free :)"
-          />
-          <meta
-            property="og:image"
-            content={
-              post.types === "image"
-                ? `${process.env.PUBLIC_URL}/resize/${post.fileName}`
-                : `${process.env.DOMAIN}/original.png}`
-            }
-          />
-          <meta
-            property="og:image:secure_url"
-            content={
-              post.types === "image"
-                ? `${process.env.PUBLIC_URL}/resize/${post.fileName}`
-                : `${process.env.DOMAIN}/original.png}`
-            }
-          />
-          <meta property="og:image:type" content="image/jpeg" />
-          <meta property="og:site_name" content={process.env.NAME_SPACE} />
-          <meta property="og:image:width" content="300" />
-          <meta property="og:image:height" content="300" />
-          <meta property="og:image:alt" content={process.env.DOMAIN} />
-          <meta property="og:type" content="website" />
+          <RootHead />
+          <FacebookHead fileName={post.fileName} />
+          <TwitterHead fileName={post.fileName} />
         </Head>
         <div className=".homepage">
           <Navigation />

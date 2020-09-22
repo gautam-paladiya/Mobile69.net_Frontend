@@ -344,13 +344,15 @@ class FileuploadComponent extends Component {
 
     return (
       <div className="parent-fileupload">
-        <img
-          src="/svg/close.svg"
-          width={40}
-          height={40}
-          className="close-btn"
-          onClick={() => this.props.togglePick(false)}
-        />
+        <div style={{ position: "relative" }}>
+          <img
+            src="/svg/close.svg"
+            width={40}
+            height={40}
+            className="close-btn"
+            onClick={() => this.props.togglePick(false)}
+          />
+        </div>
         {this.state.loading ? <ParentLoading /> : null}
         <div className={this.state.filetype === "audio" ? "d-block" : "d-none"}>
           <div id="waveform" className="wave"></div>
@@ -379,7 +381,7 @@ class FileuploadComponent extends Component {
                 // src={`${process.env.PUBLIC_URL}${this.state.filepath}`}
                 src={this.state.url}
                 alt={this.state.filename}
-                className="col-12 my-3 col-md-6 preview card"
+                className="col-12 my-3 col-md-9 preview card"
               />
             </div>
           </div>
@@ -438,7 +440,14 @@ class FileuploadComponent extends Component {
                   key={index}
                   onClick={() => {
                     this.setState((preState) => ({
-                      tags: [...preState.tags, cat],
+                      tags: [
+                        ...preState.tags,
+                        `${cat} ${
+                          this.state.filetype === "audio"
+                            ? " Ringtones"
+                            : " Wallpaper"
+                        }`,
+                      ],
                     }));
                   }}
                 >
