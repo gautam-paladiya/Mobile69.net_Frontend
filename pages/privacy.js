@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 class Privacy extends React.Component {
   render() {
     return (
-      <Layout canonical="terms">
+      <Layout>
         <div
           className="static-page"
           style={{
@@ -77,7 +77,7 @@ class Privacy extends React.Component {
             </li>
             <li>
               <strong>Website</strong> refers to Mobile69, accessible from
-              http://www.mobile69.net
+              http://mobile69.net
             </li>{" "}
             <li>
               <strong>Service</strong> refers to the Website.

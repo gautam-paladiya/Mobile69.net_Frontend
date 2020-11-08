@@ -16,7 +16,6 @@ import List from "../Directory/List";
 class ItemOverView extends Component {
   constructor(props) {
     super(props);
-    console.log("ItemOverViewComponent", props);
     this.state = {
       fileName: "",
       pageFound: props.pageFound,
@@ -33,8 +32,20 @@ class ItemOverView extends Component {
   }
 
   componentDidMount() {
+    console.log("ItemOverViewComponents", this.props);
+
     this.getData();
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("nextState", nextState);
+  //   console.log("nextProps", nextProps);
+  //   if (this.props.id == nextProps.id) {
+  //     console.log("return");
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   getData = () => {
     if (!this.state.isLast) {

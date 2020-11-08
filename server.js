@@ -23,6 +23,9 @@ app.prepare().then(() => {
   //     pathRewrite: { "^/api": "" },
   //   })
   // );
+  // server.get("/detail/:id", (req, res) => {
+  //   return app.render(req, res, "/detail", { id: req.params.id });
+  // });
 
   server.get("*", (req, res) => {
     return handle(req, res);

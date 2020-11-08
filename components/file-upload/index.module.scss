@@ -3,7 +3,7 @@
   height: fit-content;
   position: absolute;
   top: 0;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.76);
   display: flex;
   flex-direction: column;
   padding-left: 10%;
@@ -65,15 +65,23 @@
   padding: 0 !important;
 }
 
-.cat-parent {
+.btnSubmit {
+  width: 10rem;
+  border-radius: 2rem;
+}
+
+.catParent {
   margin-top: 5px;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
 
   .cat {
+    font-weight: bold;
+    font-size: 0.8rem;
+    font-family: var(--Lexend);
     cursor: pointer;
-    color: white;
+    color: aliceblue;
     margin: 3px;
     padding: 8px;
     $repeat: 50; // 10 iterations

@@ -7,27 +7,27 @@
 }
 
 .img {
-  display: flex;
+  display: block;
   border-radius: 50%;
   width: 150px;
   height: 150px;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   &:hover {
     background-color: #0a0202a2;
-    .edit-icon {
+    .editIcon {
       display: block;
     }
   }
 }
 
-.edit-icon {
-  margin: 5px;
+.editIcon {
+  background-color: rgba(255, 255, 255, 0.637);
+  margin: auto;
   display: none;
-  width: 30px;
-  height: 30px;
-  align-items: flex-end;
-  margin-left: 16%;
+  width: 150px;
+  height: 150px;
+  padding: 50px;
 }
 .userDetail {
   margin-left: 20px;
@@ -37,6 +37,7 @@
 
 .userName {
   text-transform: capitalize;
+  color: black;
 }
 
 .icon {
@@ -44,4 +45,5 @@
 }
 .count {
   font-weight: 700;
+  // padding: 2px;
 }

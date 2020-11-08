@@ -3,7 +3,8 @@
 .headerParent {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  margin: 1rem;
 }
 
 .logo {
@@ -14,16 +15,50 @@
   padding: 3px;
 }
 .logoText {
-  font-size: 40px;
+  font-size: 3rem;
   font-weight: "bold";
   font-family: var(--Monoton);
 }
 
 .drawer {
-  justify-self: end;
-  text-align: center;
+  width: fit-content;
+  position: absolute;
+  right: 1.5rem;
+  top: 0px;
+  margin: 0.8rem;
+  /* justify-self: end;
+  text-align: center; */
 }
 
 .slideRoot {
   transition: all visiblity 5s;
+}
+
+.dialog-enter {
+  opacity: 0.01;
+  transform: translateX(-10);
+  transition: all 1000ms;
+}
+
+.dialog-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 1000ms;
+}
+
+.dialog-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dialog-exit-active {
+  opacity: 0.01;
+  transform: scale(1.1);
+  transition: all 300ms;
+}
+
+@media (max-width: 768px) {
+  .drawer {
+    right: 0rem;
+  }
 }

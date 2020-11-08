@@ -14,26 +14,16 @@ function Slider(props) {
     getIsAuthenticated() && handleLogout();
     props.toggleSlider();
   };
-  const transitionStyles = {
-    entering: { opacity: 1 },
-    entered:  { opacity: 1 },
-    exiting:  { opacity: 0 },
-    exited:  { opacity: 0 },
-  };
+  
 
   return (
-    <Transition in={true}  timeout={200}>
-        {state => (
-    <div className={styles.slider} style={{
-      ...transitionStyles[state]
-    }} onClick={() => props.toggleSlider()}>
+  
+    <div className={`${styles.slider} animate__animated animate__slideInRight`}  onClick={() => props.toggleSlider()}>
       <div className={clsx("text-left col-md-3 col-sm-12 ",styles.content)}>
         <img
           alt="close"
           src={closeIcon}
-          width={40}
-          height={40}
-          className={`text-black py-2 align-self-start ${styles.btnClose}`}
+          className={`text-black text-right py-2 align-self-end ${styles.btnClose}`}
           onClick={() => props.toggleSlider()}
         />
 
@@ -115,8 +105,7 @@ function Slider(props) {
         </a>
       </div>
     </div>
-    )}
-    </Transition>
+    
   );
 }
 

@@ -89,12 +89,14 @@ class UserGallery extends Component {
       <div className="d-flex flex-column align-items-start">
         <div className="gallery-list row w-100 ">
           <div
-            className="col-md-2 col-6 d-flex flex-column justify-content-center align-items-center upload-item"
+            className={`col-md-2 col-6 d-flex flex-column justify-content-around align-items-center ${styles.uploadItem} `}
             onClick={() => this.props.togglePick(true)}
           >
-            <h4>Drag and Drop ! </h4>
+            <h4 style={{ color: "black", fontSize: "1.5rem" }}>
+              Drag and Drop !{" "}
+            </h4>
             <img width={100} height={100} src="/svg/upload_large.svg" />
-            <h3>Upload More</h3>
+            <h3 style={{ color: "black", fontSize: "1.2rem" }}>Upload More</h3>
           </div>
           {this.state.files.length > 0 &&
             this.state.files.map((item, index) => {

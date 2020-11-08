@@ -391,7 +391,7 @@ class FileuploadComponent extends Component {
         {/* <button onClick={}></button> */}
         <form className="d-flex flex-column ">
           <div className="form-group mt-4">
-            <label style={{ color: "white" }} htmlFor="inputFileName">
+            <label style={{ color: "white",padding:'0.5rem', fontSize:'1.5rem',fontFamily:'var(--Lexend)' }} htmlFor="inputFileName">
               File Name
             </label>
             <input
@@ -410,7 +410,7 @@ class FileuploadComponent extends Component {
             </small>
           </div>
           <div className="form-group">
-            <label style={{ color: "white" }} htmlFor="inputfilelabel">
+            <label style={{ color: "white",padding:'0.5rem', fontSize:'1.5rem',fontFamily:'var(--Lexend)' }} htmlFor="inputfilelabel">
               File Tags
             </label>
             <div className={styles.tagList}>
@@ -460,17 +460,17 @@ class FileuploadComponent extends Component {
 
           <Progress percentage={this.state.progress} />
 
-          <Message
+         {this.state.message && <Message
             ref={this.messageRef}
             message={this.state.message}
             success={this.state.success}
-          />
+          />}
 
           <input
             type="button"
             onClick={this.onHandleSubmit}
             value="Upload"
-            className="btn btn-primary m-1 btn-submit"
+            className={`btn btn-primary m-1 btn-submit ${styles.btnSubmit}`}
           />
         </form>
         <hr className="divider mt-5" />

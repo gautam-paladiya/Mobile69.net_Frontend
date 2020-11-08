@@ -28,16 +28,6 @@ class MusicItem extends Component {
     this.props.dispatch(pause(this.props.playId));
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    // console.log('shouldComponentUpdate props',nextProps);
-    // console.log('shouldComponentUpdate state',nextState);
-    // console.log(this.props, this.state);
-    if (nextProps.playId === nextProps.item._id) {
-      return true;
-    }
-    return false;
-  }
-
   deleteImage = async (id) => {
     const result = await AxiosInstance.post(
       `/post/delete`,
@@ -114,7 +104,7 @@ class MusicItem extends Component {
         />
 
         <div className="card d-flex justify-content-center align-items flex-column">
-          <Link href="/detail/[id]" as={`/detail/${this.props.item._id}`}>
+          <a href={`/detail/${this.props.item._id}`}>
             <div>
               <div className={clsx("card-img", "imgCover")}>
                 <Trianglify />
@@ -126,7 +116,7 @@ class MusicItem extends Component {
                 </h5>
               )}
             </div>
-          </Link>
+          </a>
 
           {this.state.loading ? (
             <div className={clsx(styles.parentMedia, styles.progress)}>

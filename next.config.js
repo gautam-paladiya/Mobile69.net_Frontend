@@ -13,17 +13,11 @@ module.exports = withImages({
     JWT_SECRET: "Paladiya",
     NAME_SPACE: "Mobile69.net",
     // PUBLIC_URL: "http://mobile69.net",
-    // PUBLIC_URL: "http://192.168.100.4:3000/api",
-    // PUBLIC_URL: "http://18.188.37.90/api",
+    // PUBLIC_URL: "/api",
     PUBLIC_URL: "https://mobile69.net/api",
     DOMAIN: "https://mobile69.net",
     ANDROID_ID: "https://play.google.com/store/apps/details?id=com.mobile69",
     IOS_ID: "https://play.google.com/store/apps/details?id=com.mobile69",
-    MONGO_DB:
-      "mongodb://mobile:Gautampatel%400261@18.188.37.90:27017/?authSource=admin",
-    // MONGO_DB:
-    //   "mongodb+srv://gautam:gautam@cluster0.emjg5.mongodb.net/test?retryWrites=true&w=majority",
-    // MONGO_DB: "mongodb://localhost:27017",
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.plugins.push(new Dotenv({ silent: true }));
@@ -32,4 +26,7 @@ module.exports = withImages({
 
     return config;
   },
+  // images: {
+  //   domains: ['mobile69.net'],
+  // },
 });

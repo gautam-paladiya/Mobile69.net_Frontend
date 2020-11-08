@@ -13,6 +13,7 @@ const Trianglify = dynamic(() => import("react-trianglify"), {
 });
 import pauseIcon from "../../assets/img/pause.png";
 import playIcon from "../../assets/img/play.png";
+import styles from "./index.module.css";
 
 function MusicOverView(props) {
   const { entity } = useSelector((state) => state);
@@ -21,7 +22,11 @@ function MusicOverView(props) {
   const dispatch = useDispatch();
 
   const audio = useRef(null);
-
+  // window.scrollTo({
+  //   left: 0,
+  //   top: 150,
+  //   behavior: "smooth",
+  // });
   // useEffect(
   //   () => () => {
   //     dispatch(pause(props.playId))
@@ -108,28 +113,28 @@ function MusicOverView(props) {
             <Trianglify />
           </div>
           {loading ? (
-            <div className="parent-media progress">
+            <div className={`${styles.parentMedia} progress`}>
               <MusicSpinner className="progress" size={20} />
             </div>
           ) : (
             <CircularProgressbar className="progress" value={audioPercent} />
           )}
 
-          <div className="card-img-overlay parent-media">
+          <div className={`card-img-overlay ${styles.parentMedia}`}>
             {entity.music.isPlaying &&
             entity.music.itemId === props.item._id ? (
               <img
                 alt="pause button"
                 src={pauseIcon}
                 onClick={() => onPause(props.item._id)}
-                className="img-media"
+                className={styles.imgMedia}
               />
             ) : (
               <img
                 alt="play button"
                 src={playIcon}
                 onClick={() => onPlay(props.item._id)}
-                className="img-media"
+                className={styles.imgMedia}
               />
             )}
           </div>

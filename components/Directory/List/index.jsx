@@ -14,8 +14,7 @@ export default function(props){
 
     return (
          <div className={styles.parentDir}>
-        {/* {this.state.entity.isProgress && <RingLoader size={200} color="#4A90E2" />} */}
-        {props.posts &&
+        {props.posts ?
             <div className={styles.directoryList}>
               {props.posts.map((item, index) => {
                 switch (item.types) {
@@ -44,7 +43,7 @@ export default function(props){
                     return null;
                 }
               })}
-            </div>}
+            </div> : <RingLoader size={200} color="#4A90E2" />}
           </div>
     );
   }

@@ -23,6 +23,7 @@ export class IndexComponent extends React.Component {
     this.state = {
       navigation: false,
     };
+    this.handleNavAndrid = this.handleNavAndrid.bind(this)
   }
 
   handleToggleNav = () => {
@@ -32,11 +33,18 @@ export class IndexComponent extends React.Component {
     this.setState({ navigation: !this.state.navigation });
   };
 
-  handleNavAndrid = () => {};
+  handleNavAndrid(e) {
+    console.log(e)
+    e.target.classList.add('animate__animated')
+    e.target.classList.add('animate__tada')
+  };
+
+  
 
   render() {
     return (
       <div className={clsx(styles.container)}>
+       
         <header className={styles.header}>
           <nav className={styles.nav} ref="navRef">
             <h1 className={styles.brandName}>
@@ -47,9 +55,10 @@ export class IndexComponent extends React.Component {
             <div className={styles.toggleCollapse}>
               <div
                 className={styles.toggleIcons}
-                onClick={() => this.handleToggleNav()}
+                onClick={this.handleToggleNav}
               >
                 <img
+                alt=""
                   src={this.state.navigation ? Close : Bar}
                   className={styles.collapseLogo}
                 />
@@ -63,7 +72,7 @@ export class IndexComponent extends React.Component {
                 <li className={styles.navLinks}>
                   <a href="">Contact us</a>
                 </li>
-                <li className={clsx(styles.navLinks, styles.getApp)}>
+                <li className={clsx(styles.navLinks, styles.getApp,'animate__animated animate__pulse animate__infinite')}>
                   <a href="">Get the App</a>
                 </li>
               </ul>
@@ -72,7 +81,7 @@ export class IndexComponent extends React.Component {
 
           {/* <div className="dividerSingle dividerHide" /> */}
           <div className={styles.banner}>
-            <div className={clsx(styles.leftBanner)}>
+            <div className={clsx(styles.leftBanner,'animate__animated animate__fadeIn animate__delay_2')}>
               <h3 className={styles.bannerBrandName}>
                 Mobile69, <br /> Everything You
               </h3>
@@ -86,29 +95,38 @@ export class IndexComponent extends React.Component {
               <div>
                 <ul className={styles.navItems}>
                   <li
-                    className={styles.navLinks}
-                    onClick={() => this.handleNavAndrid()}
+                    className={`${styles.navLinks} animate__animated animate__fadeIn`}
+                    onClick={this.handleNavAndrid}
+                    onAnimationEnd={(e)=>{ e.target.classList.toggle('animate__animated')
+                    e.target.classList.toggle('animate__tada')}}
                   >
-                    <a>
+                    <a                         href="https://play.google.com/store/apps/details?id=com.mobile69"
+>
                       <img
+                      alt="Android"
                         src={AndroidIcon}
-                        href="https://play.google.com/store/apps/details?id=com.mobile69"
                         className={styles.navLogo}
                       />
                     </a>
                   </li>
-                  <li className={styles.navLinks}>
-                    <a>
+                  <li className={`${styles.navLinks} animate__animated animate__fadeIn`} onClick={this.handleNavAndrid}
+                    onAnimationEnd={(e)=>{ e.target.classList.toggle('animate__animated')
+                    e.target.classList.toggle('animate__tada')}}>
+                    <a                         href="https://play.google.com/store/apps/details?id=com.mobile69"
+>
                       <img
+                      alt="iOs"
                         src={IosIcon}
-                        href="https://play.google.com/store/apps/details?id=com.mobile69"
                         className={styles.navLogo}
                       />
                     </a>
                   </li>
-                  <li className={styles.navLinks}>
+                  <li className={`${styles.navLinks} animate__animated animate__fadeIn`} onClick={this.handleNavAndrid}
+                    onAnimationEnd={(e)=>{ e.target.classList.toggle('animate__animated')
+                    e.target.classList.toggle('animate__tada')}}>
                     <Link href="/ringtones-and-wallpapers">
                       <img
+                      alt="Browser"
                         src={BrowserIcon}
                         href="#"
                         className={styles.navLogo}
@@ -119,28 +137,28 @@ export class IndexComponent extends React.Component {
               </div>
             </div>
             <div className={styles.rightBanner}>
-              <img src={Screen} className={styles.screenLogo} />
+              <img src={Screen} className={styles.screenLogo} alt="" />
             </div>
           </div>
         </header>
         <section className={styles.featureSection}>
-          <div className={styles.feature}>
-            <img className={styles.featureImage} src={Feature1} />
+          <div data-aos="zoom-out-up" className={clsx(styles.feature,'animate__animated animate__fadeIn animate__delay_2')}>
+            <img className={styles.featureImage} src={Feature1} alt="" />
             <h3 className={styles.featureTitle}>30 million active users</h3>
             <p className={styles.featureDescription}>
               mobile69 has more than 436 million downloads
             </p>
           </div>
-          <div className={styles.feature}>
-            <img className={styles.featureImage} src={Feature2} />
+          <div data-aos="zoom-out-up" className={styles.feature}>
+            <img className={styles.featureImage} src={Feature2}  alt=""/>
             <h3 className={styles.featureTitle}>Free & Premium Content</h3>
             <p className={styles.featureDescription}>
               Millions of free pieces of content and featured content available
               now
             </p>
           </div>
-          <div className={styles.feature}>
-            <img className={styles.featureImage} src={Feature3} />
+          <div data-aos="zoom-out-up" className={styles.feature}>
+            <img className={styles.featureImage} src={Feature3} alt="" />
             <h3 className={styles.featureTitle}>Top tier content creators</h3>
             <p className={styles.featureDescription}>
               From some of the top musicians in the world to local artists, we
@@ -153,34 +171,34 @@ export class IndexComponent extends React.Component {
             Content for all tastes and styles
           </h3>
           <ul className={styles.contentItems}>
-            <li>
+            <li  data-aos="fade-right">
               <Link href="/wallpapers">
                 <div className={styles.contentList}>
-                  <img src={Content1} />
+                  <img src={Content1} alt="" />
                   <h3 className={styles.contentTitle}>Wallpaper</h3>
                 </div>
               </Link>
             </li>
-            <li>
+            <li data-aos="fade-up-right">
               <Link href="/wallpapers">
                 <div className={styles.contentList}>
-                  <img src={Content2} />
+                  <img src={Content2} alt="" />
                   <h3 className={styles.contentTitle}>Live Wallpaper</h3>
                 </div>
               </Link>
             </li>
-            <li>
+            <li data-aos="fade-up-left">
               <Link href="/ringtones">
                 <div className={styles.contentList}>
-                  <img src={Content3} />
+                  <img src={Content3}  alt=""/>
                   <h3 className={styles.contentTitle}>Videos</h3>
                 </div>
               </Link>
             </li>
-            <li>
+            <li  data-aos="fade-left">
               <Link href="/ringtones">
                 <div className={styles.contentList}>
-                  <img src={Content4} />
+                  <img src={Content4} alt=""/>
                   <h3 className={styles.contentTitle}>Ringtones</h3>
                 </div>
               </Link>

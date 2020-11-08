@@ -11,23 +11,25 @@ import Link from "next/link";
 import Head from "next/head";
 import RootHead from "../components/head/RootHead";
 import Cookie from "js-cookie";
+import { NextSeo } from "next-seo";
 
 var MobileDetect = require("mobile-detect");
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    console.log("index", props);
+    console.log("index", this.props);
   }
 
   render() {
     return (
-      <Layout canonical="all">
+      <Layout>
         <div className=".homepage">
           <Head>
             {RootHead({
               title:
                 "Free ringtones, wallpapers and backgrounds for your cell phone | Mobile69",
+              canonical: "ringtones-and-wallpapers",
             })}
           </Head>
           <Navigation />

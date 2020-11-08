@@ -2,6 +2,7 @@ import "jquery";
 import "nprogress/nprogress.css";
 import "../node_modules/react-circular-progressbar/dist/styles.css";
 import "../styles.scss";
+import "aos/dist/aos.css";
 
 import App from "next/app";
 import React from "react";
@@ -14,6 +15,7 @@ Router.events.on("routeChangeStart", (url) => {
 });
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
+import Aos from "aos";
 
 class MyApp extends App {
   // static getInitialProps = async ({ Component, ctx }) => {
@@ -28,6 +30,12 @@ class MyApp extends App {
   //     pageProps,
   //   };
   // };
+
+  componentDidMount() {
+    Aos.init({
+      duration: 2000,
+    });
+  }
   render() {
     const { Component, pageProps } = this.props;
 

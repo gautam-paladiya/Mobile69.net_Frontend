@@ -8,7 +8,11 @@ import { setSerachTermAction } from "../../redux/entities/entityAction";
 import { wrapper } from "../../redux/store";
 import $ from "jquery";
 import Head from "next/head";
-import { Transition, TransitionGroup } from "react-transition-group";
+import {
+  CSSTransition,
+  Transition,
+  TransitionGroup,
+} from "react-transition-group";
 import styles from "./index.module.css";
 import clsx from "clsx";
 
@@ -95,25 +99,29 @@ function Header(props) {
             </div>
           </div>
         </div>
-        <div className={clsx("col-md-3 p-3", styles.drawer)}>
-          <img
-            alt="menu"
-            src="/svg/bars.svg"
-            width={30}
-            height={30}
-            onClick={() => setToggle(!toggle)}
-          />
-        </div>
+      </div>
+      <div className={clsx("col-md-3 p-3", styles.drawer)}>
+        <img
+          alt="menu"
+          src="/svg/bars.svg"
+          width={30}
+          height={30}
+          onClick={() => setToggle(!toggle)}
+        />
       </div>
       <hr className="divider" />
       {/* <ReactTra component={FirstChild}> */}
 
-      {toggle && (
-        <SliderComponent
-          className={styles.slideRoot}
-          toggleSlider={() => setToggle(false)}
-        />
-      )}
+      <TransitionGroup component={null}>
+        {toggle && (
+          <Transition className={`${styles.dialog}`} timeout={500}>
+            <SliderComponent
+              className={clsx(styles.slideRoot, styles.dialog)}
+              toggleSlider={() => setToggle(false)}
+            />
+          </Transition>
+        )}
+      </TransitionGroup>
     </div>
   );
 }

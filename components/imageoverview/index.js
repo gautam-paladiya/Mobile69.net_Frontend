@@ -7,7 +7,7 @@ export default function ImageOverView(props) {
   const onLoadComplete = () => {
     window.scrollTo({
       left: 0,
-      top: document.body.scrollHeight,
+      top: 150,
       behavior: "smooth",
     });
   };

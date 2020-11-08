@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 export default class copyright extends Component {
   render() {
     return (
-      <Layout canonical="copyright">
+      <Layout>
         <section
           className="static-page"
           style={{

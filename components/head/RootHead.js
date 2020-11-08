@@ -1,3 +1,4 @@
+import { NextSeo } from "next-seo";
 import React, { Component, Fragment } from "react";
 
 export default function (props) {
@@ -17,6 +18,14 @@ export default function (props) {
       <meta property="image" content={`${process.env.DOMAIN}/original.png`} />
 
       <meta property="url" content={`${process.env.DOMAIN}/original.png`} />
+      {/* <link rel="canonical" href="https://www.zedge.net/ringtones-and-wallpapers"></link> */}
+      {props.canonical && (
+        <link
+          rel="canonical"
+          href={`https://mobile69.net/${props.canonical}`}
+          data-rh="true"
+        />
+      )}
     </React.Fragment>
   );
 }

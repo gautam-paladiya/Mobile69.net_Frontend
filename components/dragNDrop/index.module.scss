@@ -1,12 +1,13 @@
 .dragParent {
+  align-self: center;
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  background-color: $dark-trans-back;
+  top: 5%;
+  left: 5%;
+  margin: auto;
+  // padding: 5rem;
+  height: 85vh;
+  width: 90vw;
+  background-color: rgba(124, 118, 118, 0.87);
   overflow: hidden;
   scroll-behavior: unset;
   display: flex;
@@ -23,7 +24,7 @@
 
 .dragDrop {
   height: 85vh;
-  border: dashed white 4px;
+  border: dashed black 4px;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,0 +1,13 @@
+.parentMedia {
+  margin: auto;
+  width: min-content;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgMedia {
+  width: 30px;
+  height: 30px;
+}

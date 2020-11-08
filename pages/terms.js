@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 export default class Terms extends Component {
   render() {
     return (
-      <Layout canonical="terms">
+      <Layout>
         <div
           className="static-page"
           style={{
@@ -19,8 +19,8 @@ export default class Terms extends Component {
           <p>
             {" "}
             These Terms of Service explain your rights and obligations in using
-            the websites including but not limited to, www.mobile69.net,
-            ("Website") and mobile applications ("Mobile Apps") of Mobile69, its
+            the websites including but not limited to, mobile69.net, ("Website")
+            and mobile applications ("Mobile Apps") of Mobile69, its
             subsidiaries, parents and affiliates ("Mobile69"). We refer to our
             Website visitors and Mobile App users as users ("Users") of
             Mobile69's Services ("Services") whether as a guest or registered

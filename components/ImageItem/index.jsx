@@ -1,10 +1,20 @@
 import Img from "react-image";
-import Link from "next/link";
 import { AxiosInstance } from "../../utils/Helper";
-import styles from "./index.module.css";
+import styles from "./index.module.scss";
 import clsx from "clsx";
+import { useRouter } from 'next/router'
 
 export default  function(props)  {
+
+  const router = useRouter()
+
+  // const handleNavigate = (id)=>{
+  //   router.replace(`/detail/${props.item._id}`)
+  //   router.events.on('routeChangeComplete', (url)=>{
+  //     router.reload()
+  //   })
+  // }
+
   const deleteImage = async (id) => {
     const result = await AxiosInstance.post(
       "/post/delete",
@@ -22,10 +32,12 @@ export default  function(props)  {
     console.log(result);
   };
   return (
-    <div className={clsx(props.col, styles.listItem, "align-self-center")}>
-      <Link href="/detail/[id]" as={`/detail/${props.item._id}`}>
-        <div className="card">
+    <div className={clsx(props.col, styles.listItem, "align-self-center animate__animated animate__fadeIn")}>
+      <a  href={`/detail/${props.item._id}`} >
+        <div className="card" >
           <Img
+          // width={200}
+          // height={300}
             alt={`${props.item.fileOriginName}`}
             className={clsx("card-img", styles.imgCover)}
             src={`${process.env.PUBLIC_URL}/resize/${props.item.fileName}`}
@@ -38,7 +50,7 @@ export default  function(props)  {
             )}
           </div>
         </div>
-      </Link>
+      </a>
       {props.delete && (
         <img
           alt="close"

@@ -4,6 +4,11 @@ import RootHead from "../components/head/RootHead";
 import { IndexComponent } from "../components/index";
 
 class Index extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {}
+
   render() {
     return (
       <div>

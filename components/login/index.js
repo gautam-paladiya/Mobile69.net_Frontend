@@ -44,7 +44,7 @@ export default function LoginComponent() {
             setProfile(res.data.user);
             setToken(res.data.jwt);
             setIsAuthenticated(true);
-            router.replace("/");
+            router.replace("/uploads");
           } else {
             setError(res.data.error);
           }

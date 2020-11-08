@@ -12,12 +12,13 @@ import RootHead from "../components/head/RootHead";
 class Ringtones extends React.Component {
   render() {
     return (
-      <Layout canonical="ringtones">
+      <Layout>
         <div className=".homepage">
           <Head>
             {RootHead({
               title:
                 "Free ringtones, wallpapers and backgrounds for your cell phone | Mobile69",
+              canonical: "ringtones",
             })}
           </Head>
           <Navigation />

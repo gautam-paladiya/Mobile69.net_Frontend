@@ -85,7 +85,7 @@ export default function (props) {
           <h3 className={styles.userName}>{props.user.name}</h3>
           <div className="d-flex ">
             <div className={styles.icon}>
-              <img src="/svg/downloads.svg" />
+              <img src="/svg/downloads.svg" />{" "}
               <span className={styles.count}>{download}</span>
             </div>
             <div className={styles.icon}>

@@ -1,4 +1,5 @@
 import Dropzone from "react-dropzone";
+import styles from "./index.module.scss";
 
 class DragNDrop extends React.Component {
   constructor(props) {
@@ -94,7 +95,9 @@ class DragNDrop extends React.Component {
                     <h1 style={{ color: "#F47B66" }}>{this.state.message}</h1>
                   )}
                   <img src="/svg/cloud_upload.svg" width={50} height={50} />
-                  <h2 style={{ color: "white" }}>Drag and Drop</h2>
+                  <h2 style={{ color: "white", fontSize: "2.5rem" }}>
+                    Drag and Drop
+                  </h2>
                   <div className={styles.mediaIcon}>
                     <img
                       src="/img/camera.png"
@@ -109,8 +112,16 @@ class DragNDrop extends React.Component {
                       height={60}
                     />
                   </div>
-                  <h4 style={{ color: "white" }}>OR CHOOSE FILE</h4>
-                  <h6 style={{ color: "white", marginTop: "20px" }}>
+                  <h4 style={{ color: "white", fontSize: "2rem" }}>
+                    OR CHOOSE FILE
+                  </h4>
+                  <h6
+                    style={{
+                      color: "white",
+                      marginTop: "20px",
+                      fontSize: "1.2rem",
+                    }}
+                  >
                     By selecting 'Upload' you are representing that this item is
                     not obscene and does not otherwise violate mobile69.net's
                     Terms of Service, and that you own all copyrights to this

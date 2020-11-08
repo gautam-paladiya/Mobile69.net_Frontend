@@ -7,16 +7,18 @@ import { getDataAction } from "../redux/entities/entityAction";
 import WallERing from "../components/Directory";
 import { wrapper } from "../redux/store";
 import Head from "next/head";
+import RootHead from "../components/head/RootHead";
 
 class Wallpaper extends React.Component {
   render() {
     return (
-      <Layout canonical="wallpapers">
+      <Layout>
         <div className=".homepage">
           <Head>
             {RootHead({
               title:
                 "Free ringtones, wallpapers and backgrounds for your cell phone | Mobile69",
+              canonical: "wallpapers",
             })}
           </Head>
           <Navigation />
