@@ -1,0 +1,13 @@
+.model {
+  display: flex;
+  background: #c0c0c09c !important;
+}
+.dialog {
+  align-self: center;
+  display: flex;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+}

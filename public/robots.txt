@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /find/
+Disallow: /404/
+Disallow: /rp9705/
+
+
+User-agent: turnitinbot
+User-agent: NPBot
+User-agent: ia_archiver
+User-agent: webzip
+User-agent: OmniExplorer_Bot
+User-agent: BoardReader
+Disallow: /
+
+Sitemap: https://www.zedge.net/sitemap.xml

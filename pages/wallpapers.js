@@ -1,22 +1,29 @@
-import React from 'react'
+import React from "react";
 
-import Layout from '../components/Layout'
-import { connect } from 'react-redux'
-import Navigation from '../components/navigation'
-import { getDataAction } from '../redux/entities/entityAction'
-import WallERing from '../components/directory/wallEring'
-import { wrapper } from '../redux/store'
+import Layout from "../components/Layout";
+import { connect } from "react-redux";
+import Navigation from "../components/navigation";
+import { getDataAction } from "../redux/entities/entityAction";
+import WallERing from "../components/Directory";
+import { wrapper } from "../redux/store";
+import Head from "next/head";
 
 class Wallpaper extends React.Component {
-  render () {
+  render() {
     return (
-      <Layout canonical='wallpapers'>
-        <div className='.homepage'>
+      <Layout canonical="wallpapers">
+        <div className=".homepage">
+          <Head>
+            {RootHead({
+              title:
+                "Free ringtones, wallpapers and backgrounds for your cell phone | Mobile69",
+            })}
+          </Head>
           <Navigation />
           <WallERing />
         </div>
       </Layout>
-    )
+    );
   }
 }
 
@@ -24,11 +31,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, req, res, ...etc }) => {
     await store.dispatch(
       getDataAction({
-        navigation: 'wallpaper',
-        isInitial: true
+        navigation: "wallpaper",
+        isInitial: true,
       })
-    )
+    );
   }
-)
+);
 
-export default connect(state => state)(Wallpaper)
+export default connect((state) => state)(Wallpaper);

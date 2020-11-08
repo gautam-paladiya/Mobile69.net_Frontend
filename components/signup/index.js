@@ -8,6 +8,7 @@ import {
 } from "../../utils/AuthService ";
 import catchError from "../../utils/catchError";
 import { AxiosInstance } from "../../utils/Helper";
+import styles from "./index.module.scss";
 
 export default function SignupComponent(props) {
   const router = useRouter();
@@ -49,18 +50,20 @@ export default function SignupComponent(props) {
   };
 
   return (
-    <div className="d-flex align-items-center min-vh-100 py-3 py-md-0 login">
+    <div
+      className={`d-flex align-items-center min-vh-100 py-3 py-md-0 ${styles.login} `}
+    >
       <div className="container">
-        <div className="card login-card">
+        <div className={`card ${styles.loginCard}`}>
           <div className="row no-gutters">
             <div className="col-md-5">
               <img
                 src="/img/signup.webp"
                 alt="Signup image"
-                className="login-card-img"
+                className={styles.loginCardImg}
               />
             </div>
-            <div className="close">
+            <div className={styles.close}>
               <img
                 alt="close"
                 src="/svg/close.svg"
@@ -70,8 +73,8 @@ export default function SignupComponent(props) {
               />
             </div>
             <div className="col-md-7">
-              <div className="card-body">
-                <div className="brand-wrapper">
+              <div className={styles.cardBody}>
+                <div className={styles.brandWrapper}>
                   <img
                     src="/img/logo.png"
                     alt={process.env.NAME_SPACE}
@@ -80,7 +83,9 @@ export default function SignupComponent(props) {
                   />
                 </div>
                 <div className="login-wrapper my-auto">
-                  <h1 className="login-title">Sign up</h1>
+                  <p className={styles.loginCardDescription}>
+                    Sign up your account
+                  </p>
                   <form onSubmit={handleSubmit}>
                     <div className="form-group">
                       <label htmlFor="name">Name</label>
@@ -125,7 +130,7 @@ export default function SignupComponent(props) {
                     <button
                       name="login"
                       id="login"
-                      className="btn btn-block login-btn"
+                      className={`btn btn-block mb-4 ${styles.loginBtn}`}
                       type="submit"
                       value="Sign up"
                     >
@@ -144,7 +149,7 @@ export default function SignupComponent(props) {
                     </button>
                   </form>
                   {error && <Message success={false} message={error} />}
-                  <p className="login-wrapper-footer-text">
+                  <p className={styles.loginCardFooterText}>
                     Have an account?{" "}
                     <button
                       onClick={() => router.replace("/login")}

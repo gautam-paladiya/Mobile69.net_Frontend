@@ -9,10 +9,11 @@ import MusicOverView from "../musicoverview";
 import download from "../../utils/Downloads";
 import Link from "next/link";
 import ParentLoading from "../parentLoading";
-import ImageItem from "../imageItem";
-import MusicItem from "../musicItem";
+import styles from './index.module.css';
+import clsx from "clsx";
+import List from "../Directory/List";
 
-class ItemOverViewComponent extends Component {
+class ItemOverView extends Component {
   constructor(props) {
     super(props);
     console.log("ItemOverViewComponent", props);
@@ -95,18 +96,7 @@ class ItemOverViewComponent extends Component {
 
     if (result) {
       if (result.data.status == 200) {
-        // if (result.data.post.types === 'music') {
-        //   this.setState({
-        //     post: {
-        //       ...result.data.post,
-        //       pattern: TrianglifyGenerate()
-        //         .canvas()
-        //         .toDataURL()
-        //     }
-        //   })
-
-        //   return
-        // }
+       
         this.setState({
           post: result.data.post,
         });
@@ -179,7 +169,7 @@ class ItemOverViewComponent extends Component {
     console.log(this.state.countDown);
     return this.state.pageFound ? (
       this.state.post ? (
-        <div className="parent ">
+        <div className={styles.parent}>
           {this.state.countDown && (
             <CountDown
               toggleCountDown={(toggle) => this.toggleCountDownHandler(toggle)}
@@ -188,42 +178,42 @@ class ItemOverViewComponent extends Component {
           )}
           <div>
             {!this.state.isZoom && (
-              <div className="header-parent pt-2 d-flex flex-column align-items-md-start flex-md-row ">
-                <div className="left col-12 col-md-10">
+              <div className={clsx("pt-2 d-flex flex-column align-items-md-start flex-md-row ",styles.headerParent)}>
+                <div className={clsx("col-12 col-md-10",styles.left)}>
                   <div className="d-flex">
                     <div
                       style={{
                         backgroundImage: `url(${process.env.PUBLIC_URL}/profile/${this.state.post.userId}), url(/img/user.png)`,
                       }}
-                      className="img-profile"
+                      className={styles.imgProfile}
                       alt="profile"
                     />
                     <div className="d-flex flex-column">
                       <div className="d-flex align-items-center justify-content-between">
-                        <h5 className="file-text">
+                        <h5 className={styles.fileText}>
                           {this.state.post.fileOriginName}
                         </h5>
-                        <h5 className="file-text text-primary ">
+                        <h5 className={`${styles.fileText} text-primary `}>
                           <img
                             src="/svg/download.svg"
                             className="ml-4 mr-2 align-self-center text-primary"
                           />
                         </h5>
 
-                        <h5 className="file-text text-primary ">
+                        <h5 className={`${styles.fileText} text-primary `}>
                           {this.state.post.downloads}
                         </h5>
                       </div>
-                      <span className="user-text text-muted">
+                      <span className={`${styles.userText}text-muted`}>
                         by {this.state.post.userName}
                       </span>
                     </div>
                   </div>
-                  <div className="tag-row">
+                  <div className={styles.tagRow}>
                     {this.state.post.fileTags.map((tag, index) => {
                       return (
                         <Link href={`/find/${tag}`} key={index}>
-                          <h6 className="badge badge-pill badge-info tagBadge">
+                          <h6 className={`badge badge-pill badge-info ${styles.tagBadge}`}>
                             {tag}
                           </h6>
                         </Link>
@@ -258,7 +248,7 @@ class ItemOverViewComponent extends Component {
               </div>
             )}
           </div>
-          <div className="media">
+          <div className={styles.media}>
             {this.state.post.types == "image" ? (
               <ImageOverView
                 item={this.state.post}
@@ -274,38 +264,7 @@ class ItemOverViewComponent extends Component {
             )}
           </div>
 
-          <div className="parent-dir">
-            <div className="directory-list">
-              {this.state.posts.map((item, index) => {
-                switch (item.types) {
-                  case "image":
-                    return (
-                      <ImageItem
-                        key={index}
-                        item={item}
-                        isActive={true}
-                        name={true}
-                        col="col-md-2 col-4"
-                      />
-                    );
-                    break;
-                  case "music":
-                    return (
-                      <MusicItem
-                        key={index}
-                        item={item}
-                        isActive={true}
-                        name={true}
-                        col="col-md-2 col-4"
-                      />
-                    );
-
-                  default:
-                    return null;
-                }
-              })}
-            </div>
-          </div>
+          <List posts={this.state.posts}/>
 
           {this.state.sharePopup && (
             <SharePopup
@@ -328,4 +287,4 @@ class ItemOverViewComponent extends Component {
   }
 }
 
-export default connect((state) => state)(ItemOverViewComponent);
+export default connect((state) => state)(ItemOverView);

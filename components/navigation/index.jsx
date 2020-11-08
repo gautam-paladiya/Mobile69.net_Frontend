@@ -1,5 +1,7 @@
+import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import styles from './index.module.scss'
 
 function Navigation() {
   const router = useRouter();
@@ -12,14 +14,14 @@ function Navigation() {
   };
 
   return (
-    <div className="navigation">
+    <div className={styles.navigation}>
       <div className="d-flex flex-row justify-content-center mt-0 pt-0">
-        <Link href="/">
+        <Link href="/ringtones-and-wallpapers">
           <span
             className={
-              router.pathname === "/"
-                ? "btn btn-dark active tab"
-                : "btn btn-secondary tab"
+              router.pathname === "/ringtones-and-wallpapers"
+                ? clsx("btn btn-dark active",styles.tab)
+                : clsx("btn btn-secondary",styles.tab)
             }
           >
             <h6 style={{ margin: 0, padding: 0 }}>All</h6>
@@ -29,8 +31,8 @@ function Navigation() {
           <span
             className={
               router.pathname === "/wallpapers"
-                ? "btn btn-dark active tab"
-                : "btn btn-secondary tab"
+              ? clsx("btn btn-dark active",styles.tab)
+              : clsx("btn btn-secondary",styles.tab)
             }
           >
             <h6>Wallpaper</h6>
@@ -40,8 +42,8 @@ function Navigation() {
           <span
             className={
               router.pathname === "/ringtones"
-                ? "btn btn-dark active tab"
-                : "btn btn-secondary tab"
+              ? clsx("btn btn-dark active",styles.tab)
+              : clsx("btn btn-secondary",styles.tab)
             }
           >
             <h6>Ringtone</h6>

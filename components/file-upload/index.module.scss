@@ -1,0 +1,92 @@
+.parentFileupload {
+  width: 100%;
+  height: fit-content;
+  position: absolute;
+  top: 0;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 20px;
+}
+
+.btnSubmit {
+  align-self: center;
+  width: min-content;
+}
+
+.wavesurferHandle {
+  background: #a8dba8;
+}
+
+.wave {
+  margin: 5px;
+  padding: 3px;
+  background-color: gray;
+  margin: auto;
+  align-self: center;
+  max-width: 80vw;
+  width: 80%;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.tag {
+  width: min-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 18px;
+  margin: 3px;
+}
+.tagList {
+  margin-bottom: 5px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.preview {
+  object-fit: cover;
+  height: 250px;
+  margin: auto;
+  width: 100%;
+  padding: 0 !important;
+}
+
+.cat-parent {
+  margin-top: 5px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
+  .cat {
+    cursor: pointer;
+    color: white;
+    margin: 3px;
+    padding: 8px;
+    $repeat: 50; // 10 iterations
+    & {
+      @for $i from 1 through $repeat {
+        &:nth-child(#{$i}) {
+          background-color: rgb(
+            random(255),
+            random(255),
+            random(255)
+          ) !important;
+        }
+      }
+    }
+  }
+}

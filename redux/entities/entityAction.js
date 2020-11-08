@@ -1,35 +1,34 @@
-import catchErrors from '../../utils/catchError'
-import TrianglifyGenerate from '../../utils/Trianglify'
-import { AxiosInstance } from '../../utils/Helper'
+import catchErrors from "../../utils/catchError";
+import { AxiosInstance } from "../../utils/Helper";
 
-export const setSerachTermAction = searchTerm => ({
-  type: 'SET_SEARCH_TERM',
-  payload: searchTerm
-})
+export const setSerachTermAction = (searchTerm) => ({
+  type: "SET_SEARCH_TERM",
+  payload: searchTerm,
+});
 
 export const getDataAction = ({
   id = 0,
   navigation,
-  isInitial = false
-}) => async dispatch => {
+  isInitial = false,
+}) => async (dispatch) => {
   dispatch({
-    type: 'SET_PROGRESS',
-    payload: { isProgress: true }
-  })
+    type: "SET_PROGRESS",
+    payload: { isProgress: true },
+  });
   await AxiosInstance.post(
     `/post/${navigation}`,
     {
-      _id: id
+      _id: id,
     },
     {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" },
     }
   )
-    .then(res => {
+    .then((res) => {
       if (res.data.files && res.status == 200) {
-        console.log('data', res.data.files.length)
-        const files = res.data.files
-        const isLast = res.data.isLast
+        console.log("data", res.data.files.length);
+        const files = res.data.files;
+        const isLast = res.data.isLast;
         // const newFiles = files.map(map => {
         //   if (map.types === 'music') {
         //     return {
@@ -43,54 +42,55 @@ export const getDataAction = ({
         //   }
         // })
         dispatch({
-          type: 'SET_ITEMS',
+          type: "SET_ITEMS",
           payload: {
             items: files,
             isLast: isLast,
             isInitial,
-            navigation: navigation
-          }
-        })
+            navigation: navigation,
+          },
+        });
       } else {
+        console.log("error");
         dispatch({
-          type: 'SET_ERROR',
-          payload: { error: 'No Items found' }
-        })
+          type: "SET_ERROR",
+          payload: { error: "No Items found" },
+        });
       }
     })
-    .catch(error => {
-      console.log('error', error)
+    .catch((error) => {
+      console.log("error", error);
       dispatch({
-        type: 'SET_ERROR',
-        payload: { error: 'Something went wrong with server try later' }
-      })
-    })
-}
+        type: "SET_ERROR",
+        payload: { error: "Something went wrong with server try later" },
+      });
+    });
+};
 
 export const findDataAction = ({
   id = 1,
-  searchTerm = '',
-  isInitial = false
-}) => async dispatch => {
+  searchTerm = "",
+  isInitial = false,
+}) => async (dispatch) => {
   dispatch({
-    type: 'SET_PROGRESS',
-    payload: { isProgress: true }
-  })
+    type: "SET_PROGRESS",
+    payload: { isProgress: true },
+  });
   await AxiosInstance.post(
     `/post/find`,
     {
       pageNum: id,
-      searchTerm: searchTerm
+      searchTerm: searchTerm,
     },
     {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" },
     }
   )
-    .then(res => {
+    .then((res) => {
       if (res.data.files && res.status == 200) {
-        console.log('data', res.data.lenght)
-        const files = res.data.files
-        const isLast = res.data.isLast
+        console.log("data", res.data.lenght);
+        const files = res.data.files;
+        const isLast = res.data.isLast;
         // const newFiles = files.map(map => {
         //   if (map.types === 'music') {
         //     return {
@@ -105,26 +105,26 @@ export const findDataAction = ({
         // })
 
         dispatch({
-          type: 'SET_ITEMS',
+          type: "SET_ITEMS",
           payload: {
             items: files,
             isLast: isLast,
             isInitial,
             id: id++,
-            navigation: 'find'
-          }
-        })
+            navigation: "find",
+          },
+        });
       } else {
         dispatch({
-          type: 'SET_ERROR',
-          payload: { error: 'No Items found' }
-        })
+          type: "SET_ERROR",
+          payload: { error: "No Items found" },
+        });
       }
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch({
-        type: 'SET_ERROR',
-        payload: { error: catchErrors(error) }
-      })
-    })
-}
+        type: "SET_ERROR",
+        payload: { error: catchErrors(error) },
+      });
+    });
+};

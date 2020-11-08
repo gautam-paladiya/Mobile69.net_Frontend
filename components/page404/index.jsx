@@ -1,10 +1,10 @@
 import Link from 'next/link'
-
+import styles from './index.module.css'
 export default function (props) {
   return (
-    <div id='notfound'>
-      <div className='notfound'>
-        <div className='notfound-404'>
+    <div className={styles.notFoundParent}>
+      <div className={styles.notFound}>
+        <div className={styles.notFound404}>
           <h1>Oops!</h1>
         </div>
         <h2>{props.title || '404 - Page not found'}</h2>

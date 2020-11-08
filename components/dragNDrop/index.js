@@ -16,12 +16,12 @@ class DragNDrop extends React.Component {
 
   render() {
     return (
-      <div className="drag-parent">
+      <div className={styles.dragParent}>
         <img
           src="/svg/close.svg"
           width={40}
           height={40}
-          className="close-btn"
+          className={styles.closeBtn}
           onClick={() => this.props.togglePick(false)}
         />
         <Dropzone
@@ -89,13 +89,13 @@ class DragNDrop extends React.Component {
             <section>
               <div {...getRootProps()}>
                 <input {...getInputProps()} />
-                <div className="drag-drop ">
+                <div className={styles.dragDrop}>
                   {this.state.message && (
                     <h1 style={{ color: "#F47B66" }}>{this.state.message}</h1>
                   )}
                   <img src="/svg/cloud_upload.svg" width={50} height={50} />
                   <h2 style={{ color: "white" }}>Drag and Drop</h2>
-                  <div className="media-icon">
+                  <div className={styles.mediaIcon}>
                     <img
                       src="/img/camera.png"
                       style={{ margin: "10px" }}

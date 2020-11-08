@@ -1,0 +1,316 @@
+.error {
+  color: white;
+  background-color: red;
+}
+
+.container {
+}
+
+.header {
+  padding: 0.2rem 3rem;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(125, 125, 241, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  background-size: cover;
+  background-position: top center;
+}
+
+.nav {
+  height: 0rem;
+  min-height: 5rem;
+  display: flex;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+  transition: height 1s ease-in-out;
+}
+
+.brandName {
+  cursor: pointer;
+  font-size: 3rem;
+  /* font-weight: bold; */
+  /* font-family: var(--josefin); */
+  font-family: var(--Monoton);
+}
+
+.toggleCollapse {
+  width: 90%;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  cursor: pointer;
+  display: none;
+}
+
+.toggleIcons {
+  display: flex;
+  justify-content: flex-end;
+  /* padding: 1.7rem 0; */
+}
+
+.collapseLogo {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: white;
+  display: block;
+  margin: 2rem 0rem;
+  margin-right: 1rem;
+  filter: invert(1);
+}
+
+.collapse {
+  height: 22rem;
+  background: rgb(32, 33, 35);
+  background: linear-gradient(
+    0deg,
+    rgba(32, 33, 35, 1) 0%,
+    rgba(140, 106, 208, 1) 100%
+  );
+  transition: all 1s ease-in-out;
+}
+.collapse .navigation {
+  padding-top: 1rem;
+}
+
+.navItems {
+  display: flex;
+}
+
+.navLinks {
+  padding: 1.6rem 1rem;
+  cursor: pointer;
+  font-size: 1.7rem;
+  font-family: var(--Lexend);
+  text-decoration: none;
+  position: relative;
+}
+
+.getApp {
+  border-radius: 2rem;
+  background-color: rgb(103, 103, 143);
+  padding: 0.6rem;
+  margin: 1rem;
+}
+
+.introText {
+  color: white;
+  margin: 1.5rem 0;
+  font-family: var(--Livvic);
+  font-size: 2rem;
+}
+
+.bannerBrandName {
+  color: rgb(236, 152, 149);
+  font-size: 2.8rem;
+  font-weight: bold;
+  font-family: var(--Lexend);
+}
+
+.banner {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leftBanner {
+  flex: 1;
+  padding-right: 1rem;
+  padding-top: 2rem;
+}
+.rightBanner {
+  display: flex;
+  flex: 1;
+  padding-left: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.navLogo {
+  width: 10rem;
+  height: 4rem;
+}
+
+.screenLogo {
+  width: 20rem;
+  height: 25rem;
+}
+
+.featureSection {
+  padding: 2rem 3rem;
+  width: 100vw;
+  height: 80vh;
+  overflow-x: hidden;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.feature {
+  margin: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 2rem 2rem; */
+}
+
+.featureImage {
+}
+
+.featureTitle {
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: var(--josefin);
+  text-align: center;
+}
+
+.featureDescription {
+  color: rgb(51, 50, 50);
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: var(--Livvic);
+  text-align: center;
+}
+
+.contentSection {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentItems {
+  background: url("../../assets/img/content.jpg");
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.contentHeading {
+  background: rgb(32, 33, 35);
+  background: linear-gradient(
+    0deg,
+    rgba(32, 33, 35, 1) 0%,
+    rgba(140, 106, 208, 1) 100%
+  );
+  display: flex;
+  font-family: var(--Abel);
+  font-size: 3rem;
+  padding: 3rem 3rem;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.contentList {
+  padding-top: 5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentTitle {
+}
+
+.footer {
+  height: 45vh;
+  align-self: center;
+  padding: 2rem 1rem;
+  border: none;
+  margin: 1.5rem 0rem;
+  background-color: #8bc6ec;
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+  flex-flow: row wrap;
+}
+
+.footColumn {
+  display: flex;
+  flex-direction: column;
+  /* align-self: center; */
+  padding: 2rem 0rem;
+  align-content: center;
+}
+.footColTitle {
+  color: black;
+  font-family: var(--Abel);
+  font-size: 1.5rem;
+  padding: 0.5rem 0rem;
+}
+.footerLink {
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem 0rem;
+  cursor: pointer;
+  /* line-height: 0.5rem; */
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: auto;
+    padding: 0.5rem 1rem;
+  }
+  .featureSection {
+    height: auto;
+  }
+
+  .toggleCollapse {
+    display: initial;
+  }
+  .brandName {
+    padding: 1.5rem 0rem;
+  }
+  .navItems,
+  .nav,
+  .banner,
+  .featureSection,
+  .contentItems {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .contentSection {
+    height: auto;
+  }
+  .contentList {
+    margin: 1rem;
+  }
+  .dividerSingle {
+    height: 0;
+    display: none;
+    visibility: hidden;
+  }
+  .footer {
+    height: auto;
+  }
+  .footColumn {
+    width: 50%;
+    padding-left: 5rem;
+
+    /* align-items: center; */
+  }
+}

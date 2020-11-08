@@ -1,0 +1,37 @@
+.dragParent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: $dark-trans-back;
+  overflow: hidden;
+  scroll-behavior: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 6px;
+}
+
+.dragDrop {
+  height: 85vh;
+  border: dashed white 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.mediaIcon {
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: center;
+}

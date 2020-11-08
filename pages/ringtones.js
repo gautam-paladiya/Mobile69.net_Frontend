@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import { connect } from "react-redux";
 import Navigation from "../components/navigation";
 import { getDataAction } from "../redux/entities/entityAction";
-import WallERing from "../components/directory/wallEring";
+import WallERing from "../components/Directory";
 import { wrapper } from "../redux/store";
 import Head from "next/head";
 import RootHead from "../components/head/RootHead";
@@ -15,7 +15,10 @@ class Ringtones extends React.Component {
       <Layout canonical="ringtones">
         <div className=".homepage">
           <Head>
-            <RootHead />
+            {RootHead({
+              title:
+                "Free ringtones, wallpapers and backgrounds for your cell phone | Mobile69",
+            })}
           </Head>
           <Navigation />
           <WallERing />

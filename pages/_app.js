@@ -1,6 +1,8 @@
-import "../styles.scss";
 import "jquery";
-import Head from "next/head";
+import "nprogress/nprogress.css";
+import "../node_modules/react-circular-progressbar/dist/styles.css";
+import "../styles.scss";
+
 import App from "next/app";
 import React from "react";
 import { wrapper } from "../redux/store";
@@ -14,18 +16,18 @@ Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
 class MyApp extends App {
-  static getInitialProps = async ({ Component, ctx }) => {
-    let pageProps = {
-      // Call page-level getInitialProps
-      ...(Component.getInitialProps
-        ? await Component.getInitialProps(ctx)
-        : {}),
-    };
+  // static getInitialProps = async ({ Component, ctx }) => {
+  //   let pageProps = {
+  //     // Call page-level getInitialProps
+  //     ...(Component.getInitialProps
+  //       ? await Component.getInitialProps(ctx)
+  //       : {}),
+  //   };
 
-    return {
-      pageProps,
-    };
-  };
+  //   return {
+  //     pageProps,
+  //   };
+  // };
   render() {
     const { Component, pageProps } = this.props;
 

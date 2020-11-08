@@ -15,6 +15,7 @@ import ParentLoading from "../parentLoading";
 import { AxiosInstance } from "../../utils/Helper";
 var lamejs = require("lamejs");
 import WaveSurfer from "wavesurfer.js";
+import styles from './index.module.scss'
 
 class FileuploadComponent extends Component {
   constructor(props) {
@@ -343,28 +344,28 @@ class FileuploadComponent extends Component {
     console.log("progress ", this.state.loading);
 
     return (
-      <div className="parent-fileupload">
+      <div className={styles.parentFileupload}>
         <div style={{ position: "relative" }}>
           <img
             src="/svg/close.svg"
             width={40}
             height={40}
-            className="close-btn"
+            className={styles.closeBtn}
             onClick={() => this.props.togglePick(false)}
           />
         </div>
         {this.state.loading ? <ParentLoading /> : null}
         <div className={this.state.filetype === "audio" ? "d-block" : "d-none"}>
-          <div id="waveform" className="wave"></div>
+          <div id="waveform" className={styles.wave}></div>
           <div className="d-flex justify-content-center d-">
             <button
-              className="btn btn-primary m-1 btn-submit"
+              className={`btn btn-primary m-1 ${styles.btnSubmit}`}
               onClick={this.handlePlayPause}
             >
               {this.state.isPlay ? "Pause" : "Play"}
             </button>
             <button
-              className="btn btn-primary m-1 btn-submit"
+              className={`btn btn-primary m-1 ${styles.btnSubmit}`}
               onClick={() => this.handlecut(true)}
             >
               Download
@@ -381,7 +382,7 @@ class FileuploadComponent extends Component {
                 // src={`${process.env.PUBLIC_URL}${this.state.filepath}`}
                 src={this.state.url}
                 alt={this.state.filename}
-                className="col-12 my-3 col-md-9 preview card"
+                className={`col-12 my-3 col-md-9 card ${styles.preview}`}
               />
             </div>
           </div>
@@ -412,7 +413,7 @@ class FileuploadComponent extends Component {
             <label style={{ color: "white" }} htmlFor="inputfilelabel">
               File Tags
             </label>
-            <div className="tag-list">
+            <div className={styles.tagList}>
               {this.state.tags.map((tag, index) => {
                 return (
                   <Tag key={index} removeTag={(tag) => this.removeTag(tag)}>
@@ -433,10 +434,10 @@ class FileuploadComponent extends Component {
               Enter File Related Tag seperate by Spacebar
             </small>
 
-            <div className="cat-parent">
+            <div className={styles.catParent}>
               {all.map((cat, index) => (
                 <div
-                  className="badge badge-pill cat"
+                  className={`badge badge-pill ${styles.cat}`}
                   key={index}
                   onClick={() => {
                     this.setState((preState) => ({
@@ -481,7 +482,7 @@ class FileuploadComponent extends Component {
 const Tag = (props) => {
   return (
     <div
-      className="badge badge-pill badge-success tag"
+      className={`badge badge-pill badge-success ${styles.tag}`}
       onClick={() => props.removeTag(props.children)}
     >
       <h6 className="m-auto">{props.children}</h6>

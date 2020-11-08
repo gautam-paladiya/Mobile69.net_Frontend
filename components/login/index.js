@@ -9,7 +9,7 @@ import {
   setIsAuthenticated,
 } from "../../utils/AuthService ";
 import { AxiosInstance } from "../../utils/Helper";
-import SocialButton from "../socialButton";
+import styles from "./index.module.scss";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -75,18 +75,20 @@ export default function LoginComponent() {
 
   return (
     <div>
-      <div className="d-flex align-items-center min-vh-100 py-3 py-md-0 login">
+      <div
+        className={`d-flex align-items-center min-vh-100 py-3 py-md-0 ${styles.login} `}
+      >
         <div className="container">
-          <div className="card login-card">
+          <div className={`card ${styles.loginCard}`}>
             <div className="row no-gutters">
               <div className="col-md-5">
                 <img
                   src="/img/login.webp"
                   alt="Login"
-                  className="login-card-img"
+                  className={styles.loginCardImg}
                 />
               </div>
-              <div className="close">
+              <div className={styles.close}>
                 <img
                   alt="Close"
                   src="/svg/close.svg"
@@ -96,8 +98,8 @@ export default function LoginComponent() {
                 />
               </div>
               <div className="col-md-7">
-                <div className="card-body">
-                  <div className="brand-wrapper">
+                <div className={styles.cardBody}>
+                  <div className={styles.brandWrapper}>
                     <img
                       src="/img/logo.png"
                       alt={process.env.NAME_SPACE}
@@ -105,11 +107,11 @@ export default function LoginComponent() {
                       onClick={() => router.replace("/")}
                     />
                   </div>
-                  <p className="login-card-description">
+                  <p className={styles.loginCardDescription}>
                     Sign into your account
                   </p>
                   <form onSubmit={handleSubmit}>
-                    <div className="form-group">
+                    <div className="form-group mb-4">
                       <label htmlFor="email" className="sr-only">
                         Email
                       </label>
@@ -142,7 +144,7 @@ export default function LoginComponent() {
                     <button
                       name="login"
                       id="login"
-                      className="btn btn-block login-btn mb-4"
+                      className={`btn btn-block mb-4 ${styles.loginBtn}`}
                       type="submit"
                       value="Login"
                     >
@@ -167,7 +169,7 @@ export default function LoginComponent() {
                   {/* <a href='#!' className='forgot-password-link'>
                       Forgot password?
                     </a> */}
-                  <p className="login-card-footer-text">
+                  <p className={styles.loginCardFooterText}>
                     Don't have an account?{" "}
                     <button
                       onClick={() => router.replace("/signup")}

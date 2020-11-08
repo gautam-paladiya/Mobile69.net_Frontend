@@ -1,67 +1,74 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
   FacebookShareButton,
   FacebookIcon,
   PinterestShareButton,
   PinterestIcon,
   WhatsappShareButton,
-  WhatsappIcon
-} from 'react-share'
+  WhatsappIcon,
+} from "react-share";
+
+import styles from "./index.module.css";
 
 export class SharePopup extends Component {
   closeBtn = () => {
     // const modal = document.getElementById('modal')
     // modal.style.display = 'none'
-    this.props.hide()
-  }
+    this.props.hide();
+  };
 
   copyToClipboard = () => {
     // navigator.clipboard.writeText(`${this.props.shareLink}`)
-    const copy = document.getElementById('shareLink')
-    copy.select()
-    copy.setSelectionRange(0, 9999)
-    document.execCommand('copy')
-  }
+    const copy = document.getElementById("shareLink");
+    copy.select();
+    copy.setSelectionRange(0, 9999);
+    document.execCommand("copy");
+  };
 
-  render () {
+  render() {
     return (
-      <div className='modal model ' id='modal' tabIndex='-1' role='dialog'>
-        <div className='modal-dialog dialog' role='document'>
-          <div className='modal-content'>
-            <div className='modal-header'>
-              <h5 className='modal-title'>Share item</h5>
+      <div
+        className={`modal ${styles.model} `}
+        id="modal"
+        tabIndex="-1"
+        role="dialog"
+      >
+        <div className={`modal-dialog ${styles.dialog}`} role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Share item</h5>
               <button
                 onClick={this.closeBtn}
-                type='button'
-                className='close'
-                data-dismiss='modal'
-                aria-label='Close'
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
               >
-                <span aria-hidden='true'>&times;</span>
+                <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className='modal-body body'>
+            <div className={`modal-body ${styles.body}`}>
               <input
-                id='shareLink'
-                className='form-control'
-                type='text'
+                id="shareLink"
+                className="form-control"
+                type="text"
                 value={this.props.shareLink}
-                readOnly='readonly'
+                readOnly="readonly"
               />
               <button
-                type='button'
+                type="button"
                 onClick={this.copyToClipboard}
-                className='btn btn-primary mx-3'
+                className="btn btn-primary mx-3"
               >
                 copy
               </button>
             </div>
-            <div className='modal-footer d-flex justify-content-center'>
+            <div className="modal-footer d-flex justify-content-center">
               <FacebookShareButton
                 url={this.props.shareLink}
-                quote='Facebook Share'
+                quote="Facebook Share"
                 onShareWindowClose={() => {
-                  this.props.hide()
+                  this.props.hide();
                 }}
               >
                 <FacebookIcon size={42} round />
@@ -82,8 +89,8 @@ export class SharePopup extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default SharePopup
+export default SharePopup;

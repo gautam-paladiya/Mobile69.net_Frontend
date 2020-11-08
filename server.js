@@ -17,12 +17,12 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
   server.use(cookieParser());
-  server.use(
-    createProxyMiddleware(`/api`, {
-      target: `http://localhost:4000`,
-      pathRewrite: { "^/api": "" },
-    })
-  );
+  // server.use(
+  //   createProxyMiddleware(`/api`, {
+  //     target: `http://localhost:4000`,
+  //     pathRewrite: { "^/api": "" },
+  //   })
+  // );
 
   server.get("*", (req, res) => {
     return handle(req, res);

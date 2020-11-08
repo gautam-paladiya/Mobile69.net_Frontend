@@ -2,6 +2,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import { useState } from "react";
 import AndroidIcon from "../../assets/img/androidIcon.png";
 import IosIcon from "../../assets/svg/ios.svg";
+import styles from "./index.module.css";
 
 export default function CountDown(props) {
   var total = 3;
@@ -16,8 +17,8 @@ export default function CountDown(props) {
   }
 
   return (
-    <div className="count-parent card">
-      <div className="content col-md-6 col-10">
+    <div className={`${styles.countParent} card`}>
+      <div className={`${styles.content} col-md-6 col-10`}>
         <span>
           <img
             className="btn-close"
@@ -37,7 +38,6 @@ export default function CountDown(props) {
           height={120}
           src="/original.png"
           alt={`Download ${process.env.NAME_SPACE} Ringtones & Wallpapers`}
-          className="original-img "
         />
         <h4>{`Download ${process.env.NAME_SPACE} Ringtones & Wallpapers`}</h4>
         <div className="mt-2">
@@ -53,14 +53,14 @@ export default function CountDown(props) {
           </a>
         </div>
         <h5 className="mt-2">OR Wait for</h5>
-        <div className="content-down m-3">
+        <div className={`${styles.contentDown} m-3`}>
           <CircularProgressbar
             className="progress"
             value={timeleft}
             maxValue={total}
             text={`${timeleft}s`}
           />
-          <div className="title">
+          <div className={styles.title}>
             <h5></h5>
           </div>
         </div>

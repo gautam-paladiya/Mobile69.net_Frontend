@@ -8,6 +8,9 @@ import { setSerachTermAction } from "../../redux/entities/entityAction";
 import { wrapper } from "../../redux/store";
 import $ from "jquery";
 import Head from "next/head";
+import { Transition, TransitionGroup } from "react-transition-group";
+import styles from "./index.module.css";
+import clsx from "clsx";
 
 function Header(props) {
   const [toggle, setToggle] = useState(false);
@@ -38,7 +41,7 @@ function Header(props) {
   };
 
   return (
-    <div className="header ">
+    <div className="header">
       <Head>
         {/* <script
           async
@@ -51,18 +54,19 @@ function Header(props) {
           gtag('js', new Date()); gtag('config', 'UA-147336177-2');
         </script> */}
       </Head>
-      <div className="header-parent flex-column flex-md-row">
-        <div className="col-md-3 logo menu">
-          <Link href="/" replace>
-            <img
+      <div className={clsx("flex-column flex-md-row", styles.headerParent)}>
+        <div className={clsx("col-md-3", styles.logo)}>
+          <Link href="/ringtones-and-wallpapers" replace>
+            {/* <img
               src="/img/logo.png"
               width={160}
               height={75}
               alt={process.env.NAME_SPACE}
-            />
+            /> */}
+            <div className={styles.logoText}>Mobile69</div>
           </Link>
         </div>
-        <div className="col-md-6 col-11 menu">
+        <div className="col-md-6 col-11 p-2">
           <div className="input-group md-form sm-form form-sm form-1 pl-0">
             <input
               id="input"
@@ -91,7 +95,7 @@ function Header(props) {
             </div>
           </div>
         </div>
-        <div className="col-md-3 drawer menu">
+        <div className={clsx("col-md-3 p-3", styles.drawer)}>
           <img
             alt="menu"
             src="/svg/bars.svg"
@@ -102,7 +106,14 @@ function Header(props) {
         </div>
       </div>
       <hr className="divider" />
-      {toggle && <SliderComponent toggleSlider={() => setToggle(false)} />}
+      {/* <ReactTra component={FirstChild}> */}
+
+      {toggle && (
+        <SliderComponent
+          className={styles.slideRoot}
+          toggleSlider={() => setToggle(false)}
+        />
+      )}
     </div>
   );
 }

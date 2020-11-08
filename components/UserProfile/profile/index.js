@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AxiosInstance } from "../../../utils/Helper";
-import { runForceUpdate, useForceUpdate } from "react-forceupdate";
+import styles from "./index.module.scss";
 
 export default function (props) {
   const [url, setUrl] = useState("");
@@ -57,7 +57,7 @@ export default function (props) {
   };
   return (
     <div>
-      <div className="user-profile flex-sm-column flex-md-row">
+      <div className={` ${styles.userProfile} flex-sm-column flex-md-row`}>
         <input
           id="myInput"
           style={{ display: "none" }}
@@ -69,7 +69,7 @@ export default function (props) {
         />
         <label htmlFor="myInput">
           <div
-            className="img"
+            className={styles.img}
             style={{
               backgroundImage: `url(${
                 process.env.PUBLIC_URL + "/profile/" + url
@@ -78,19 +78,19 @@ export default function (props) {
               backgroundSize: "cover",
             }}
           >
-            <img className="edit-icon" src="/svg/edit.svg" />
+            <img className={styles.editIcon} src="/svg/edit.svg" />
           </div>
         </label>
-        <div className="user-detail">
-          <h3 className="user-name">{props.user.name}</h3>
+        <div className={styles.userDetail}>
+          <h3 className={styles.userName}>{props.user.name}</h3>
           <div className="d-flex ">
-            <div className="icon">
+            <div className={styles.icon}>
               <img src="/svg/downloads.svg" />
-              <span className="count">{download}</span>
+              <span className={styles.count}>{download}</span>
             </div>
-            <div className="icon">
+            <div className={styles.icon}>
               <img src="/svg/uploads.svg" />{" "}
-              <span className="count">{upload}</span>
+              <span className={styles.count}>{upload}</span>
             </div>
           </div>
         </div>

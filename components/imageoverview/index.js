@@ -1,6 +1,7 @@
 import React from "react";
 import Img from "react-image";
 import { GridLoader } from "react-spinners";
+import styles from "./index.module.css";
 
 export default function ImageOverView(props) {
   const onLoadComplete = () => {
@@ -16,14 +17,16 @@ export default function ImageOverView(props) {
       <div className="card card-preview">
         <Img
           alt={`${props.item.fileOriginName}`}
-          className={!props.isZoom ? "img-preview card-img" : "zoom-in"}
+          className={
+            !props.isZoom ? `${styles.imgPreview} card-img` : `${styles.zoomIn}`
+          }
           src={`${process.env.PUBLIC_URL}/${props.item.types}/${props.item.fileName}`}
           loader={<GridLoader size={20} margin={10} />}
           unloader={<GridLoader size={20} margin={10} />}
           onLoad={onLoadComplete}
         />
 
-        <div onClick={props.toggleZoom} className="img-zoom">
+        <div onClick={props.toggleZoom} className={styles.imgZoom}>
           {props.isZoom ? (
             <img
               src="/svg/zoom-out.svg"

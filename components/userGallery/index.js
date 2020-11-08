@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import dynamic from "next/dynamic";
-import { Spinner } from "react-bootstrap";
-const ImageItem = dynamic(() => import("../imageItem"), {
+import { RingLoader } from "react-spinners";
+const ImageItem = dynamic(() => import("../ImageItem"), {
   ssr: false,
-  loading: () => <Spinner animation="grow" />,
+  loading: () => <RingLoader size={50} />,
 });
-const MusicItem = dynamic(() => import("../musicItem"), {
+const MusicItem = dynamic(() => import("../MusicItem"), {
   ssr: false,
-  loading: () => <Spinner animation="grow" />,
+  loading: () => <RingLoader size={50} />,
 });
+import styles from "./index.module.css";
 
 //import ImageItem from '../imageItem'
 // import MusicItem from '../musicItem'

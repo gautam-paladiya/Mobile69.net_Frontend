@@ -5,37 +5,50 @@ import { useRouter } from "next/router";
 import closeIcon from "../../assets/svg/close.svg";
 import AndroidIcon from "../../assets/img/androidIcon.png";
 import IosIcon from "../../assets/svg/ios.svg";
+import { Transition } from 'react-transition-group';
+import clsx from "clsx";
+import styles from './index.module.css'
 
 function Slider(props) {
   const handleSignin = () => {
     getIsAuthenticated() && handleLogout();
     props.toggleSlider();
   };
+  const transitionStyles = {
+    entering: { opacity: 1 },
+    entered:  { opacity: 1 },
+    exiting:  { opacity: 0 },
+    exited:  { opacity: 0 },
+  };
 
   return (
-    <div className="slider" onClick={() => props.toggleSlider()}>
-      <div className="content text-left col-md-3 col-sm-12 ">
+    <Transition in={true}  timeout={200}>
+        {state => (
+    <div className={styles.slider} style={{
+      ...transitionStyles[state]
+    }} onClick={() => props.toggleSlider()}>
+      <div className={clsx("text-left col-md-3 col-sm-12 ",styles.content)}>
         <img
           alt="close"
           src={closeIcon}
           width={40}
           height={40}
-          className="text-black py-2 align-self-start "
+          className={`text-black py-2 align-self-start ${styles.btnClose}`}
           onClick={() => props.toggleSlider()}
         />
 
         <h6 className="text-muted">Content</h6>
         <div className="d-flex flex-column category">
           <Link href="/all">
-            <div className="con-item">Home</div>
+            <div className={styles.contentItem}>Home</div>
           </Link>
 
           <Link href="/wallpapers">
-            <div className="con-item">Wallpapers</div>
+            <div className={styles.contentItem}>Wallpapers</div>
           </Link>
 
           <Link href="/ringtones">
-            <div className="con-item">Ringtones</div>
+            <div className={styles.contentItem}>Ringtones</div>
           </Link>
         </div>
         <h6 className="text-muted py-2">Share Your Content</h6>
@@ -91,17 +104,19 @@ function Slider(props) {
         </a>
 
         <h6 className="text-muted py-2 mt-2">Important info</h6>
-        <a href="/privacy" target="_blank" className="con-item">
+        <a href="/privacy" target="_blank" className={styles.contentItem}>
           Privacy
         </a>
-        <a href="/terms" target="_blank" className="con-item">
+        <a href="/terms" target="_blank" className={styles.contentItem}>
           Terms &amp; Condition
         </a>
-        <a href="/copyright" target="_blank" className="con-item">
+        <a href="/copyright" target="_blank" className={styles.contentItem}>
           DMCA/Copyright
         </a>
       </div>
     </div>
+    )}
+    </Transition>
   );
 }
 

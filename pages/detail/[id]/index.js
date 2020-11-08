@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../../components/Layout";
 import Navigation from "../../../components/navigation";
-import ItemOverViewComponent from "../../../components/itemoverview";
+import ItemOverView from "../../../components/itemoverview";
 import { connect } from "react-redux";
 import { AxiosInstance } from "../../../utils/Helper";
 
@@ -19,17 +19,13 @@ class DetailPage extends React.Component {
     return (
       <Layout title={post.fileOriginName}>
         <Head>
-          <RootHead />
-          <FacebookHead fileName={post.fileName} />
-          <TwitterHead fileName={post.fileName} />
+          {RootHead({ title: post.fileOriginName })}
+          {FacebookHead({ fileName: post.fileName })}
+          {TwitterHead({ fileName: post.fileName })}
         </Head>
         <div className=".homepage">
           <Navigation />
-          <ItemOverViewComponent
-            id={post._id}
-            item={post}
-            pageFound={pageFound}
-          />
+          <ItemOverView id={post._id} item={post} pageFound={pageFound} />
         </div>
       </Layout>
     );
