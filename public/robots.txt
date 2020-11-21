@@ -9,6 +9,3 @@ User-agent: ia_archiver
 User-agent: webzip
 User-agent: OmniExplorer_Bot
 User-agent: BoardReader
-Disallow: /
-
-Sitemap: https://mobile69.net/sitemap.xml

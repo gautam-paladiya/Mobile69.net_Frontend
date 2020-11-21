@@ -40,6 +40,7 @@ class DetailPage extends React.Component {
           {RootHead({
             title: post.fileOriginName,
             canonical: `detail/${post._id}`,
+            fileTags:post.fileTags
           })}
           {FacebookHead({ fileName: post.fileName })}
           {TwitterHead({ fileName: post.fileName })}

@@ -11,9 +11,6 @@ import Link from "next/link";
 import Head from "next/head";
 import RootHead from "../components/head/RootHead";
 import Cookie from "js-cookie";
-import { NextSeo } from "next-seo";
-
-var MobileDetect = require("mobile-detect");
 
 class Home extends React.Component {
   constructor(props) {
@@ -28,7 +25,7 @@ class Home extends React.Component {
           <Head>
             {RootHead({
               title:
-                "Free ringtones, wallpapers and backgrounds for your cell phone | Mobile69",
+                "Free ringtones , HD wallpapers , backgrounds for cell phone | Mobile69",
               canonical: "ringtones-and-wallpapers",
             })}
           </Head>
@@ -67,9 +64,7 @@ class Home extends React.Component {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, req, res, ...etc }) => {
-    // console.log('index request', req)
-    var md = new MobileDetect(req.headers["user-agent"]);
-    console.log(md);
+ 
     await store.dispatch(
       getDataAction({
         navigation: "all",

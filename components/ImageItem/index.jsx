@@ -46,7 +46,7 @@ export default  function(props)  {
           />
           <div className="card-img-overlay border-0 ">
             {props.name && (
-              <h5 className={styles.cardTitle}>{props.item.fileOriginName}</h5>
+              <h2 className={styles.cardTitle}>{props.item.fileOriginName}</h2>
             )}
           </div>
         </div>
@@ -68,7 +68,7 @@ export default  function(props)  {
         <div className={styles.download}>
           <h5 className={clsx("text-primary", styles.fileText)}>
             <img
-              alt="Download"
+              alt={props.item.fileOriginName}
               src="/svg/download.svg"
               className="ml-4 mr-2 align-self-center text-primary"
             />

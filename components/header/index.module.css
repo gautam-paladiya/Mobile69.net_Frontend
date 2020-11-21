@@ -18,6 +18,8 @@
   font-size: 3rem;
   font-weight: "bold";
   font-family: var(--Monoton);
+  color: black;
+  text-align: left;
 }
 
 .drawer {

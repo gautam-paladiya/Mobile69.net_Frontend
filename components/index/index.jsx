@@ -47,18 +47,18 @@ export class IndexComponent extends React.Component {
        
         <header className={styles.header}>
           <nav className={styles.nav} ref="navRef">
-            <h1 className={styles.brandName}>
+            
               <strong>
-                <a>Mobile69</a>
+                <a><h1 className={styles.brandName}>Mobile69 </h1></a>
               </strong>
-            </h1>
+           
             <div className={styles.toggleCollapse}>
               <div
                 className={styles.toggleIcons}
                 onClick={this.handleToggleNav}
               >
                 <img
-                alt=""
+                alt="toggle"
                   src={this.state.navigation ? Close : Bar}
                   className={styles.collapseLogo}
                 />
@@ -86,7 +86,7 @@ export class IndexComponent extends React.Component {
                 Mobile69, <br /> Everything You
               </h3>
               <p className={styles.introText}>
-                Zedge is the # 1 phone personalization app in the world and
+                Mobile69.net is the # 1 phone personalization app in the world and
                 helps you make sure your phone reflects you.
               </p>
               <p className={styles.introText}>
@@ -137,20 +137,20 @@ export class IndexComponent extends React.Component {
               </div>
             </div>
             <div className={styles.rightBanner}>
-              <img src={Screen} className={styles.screenLogo} alt="" />
+              <img src={Screen} className={styles.screenLogo} alt="Logo" />
             </div>
           </div>
         </header>
         <section className={styles.featureSection}>
           <div data-aos="zoom-out-up" className={clsx(styles.feature,'animate__animated animate__fadeIn animate__delay_2')}>
-            <img className={styles.featureImage} src={Feature1} alt="" />
+            <img className={styles.featureImage} src={Feature1} alt="feature1" />
             <h3 className={styles.featureTitle}>30 million active users</h3>
             <p className={styles.featureDescription}>
               mobile69 has more than 436 million downloads
             </p>
           </div>
           <div data-aos="zoom-out-up" className={styles.feature}>
-            <img className={styles.featureImage} src={Feature2}  alt=""/>
+            <img className={styles.featureImage} src={Feature2}  alt="feature2"/>
             <h3 className={styles.featureTitle}>Free & Premium Content</h3>
             <p className={styles.featureDescription}>
               Millions of free pieces of content and featured content available
@@ -158,7 +158,7 @@ export class IndexComponent extends React.Component {
             </p>
           </div>
           <div data-aos="zoom-out-up" className={styles.feature}>
-            <img className={styles.featureImage} src={Feature3} alt="" />
+            <img className={styles.featureImage} src={Feature3} alt="feature3" />
             <h3 className={styles.featureTitle}>Top tier content creators</h3>
             <p className={styles.featureDescription}>
               From some of the top musicians in the world to local artists, we
@@ -174,7 +174,7 @@ export class IndexComponent extends React.Component {
             <li  data-aos="fade-right">
               <Link href="/wallpapers">
                 <div className={styles.contentList}>
-                  <img src={Content1} alt="" />
+                  <img src={Content1} alt="wallpapers" />
                   <h3 className={styles.contentTitle}>Wallpaper</h3>
                 </div>
               </Link>
@@ -182,7 +182,7 @@ export class IndexComponent extends React.Component {
             <li data-aos="fade-up-right">
               <Link href="/wallpapers">
                 <div className={styles.contentList}>
-                  <img src={Content2} alt="" />
+                  <img src={Content2} alt="wallpapers" />
                   <h3 className={styles.contentTitle}>Live Wallpaper</h3>
                 </div>
               </Link>
@@ -190,7 +190,7 @@ export class IndexComponent extends React.Component {
             <li data-aos="fade-up-left">
               <Link href="/ringtones">
                 <div className={styles.contentList}>
-                  <img src={Content3}  alt=""/>
+                  <img src={Content3}  alt="ringtones"/>
                   <h3 className={styles.contentTitle}>Videos</h3>
                 </div>
               </Link>
@@ -198,7 +198,7 @@ export class IndexComponent extends React.Component {
             <li  data-aos="fade-left">
               <Link href="/ringtones">
                 <div className={styles.contentList}>
-                  <img src={Content4} alt=""/>
+                  <img src={Content4} alt="ringtones"/>
                   <h3 className={styles.contentTitle}>Ringtones</h3>
                 </div>
               </Link>

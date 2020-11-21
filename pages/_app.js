@@ -18,18 +18,7 @@ Router.events.on("routeChangeError", () => NProgress.done());
 import Aos from "aos";
 
 class MyApp extends App {
-  // static getInitialProps = async ({ Component, ctx }) => {
-  //   let pageProps = {
-  //     // Call page-level getInitialProps
-  //     ...(Component.getInitialProps
-  //       ? await Component.getInitialProps(ctx)
-  //       : {}),
-  //   };
 
-  //   return {
-  //     pageProps,
-  //   };
-  // };
 
   componentDidMount() {
     Aos.init({

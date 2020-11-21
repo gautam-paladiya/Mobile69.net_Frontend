@@ -14,7 +14,7 @@ module.exports = withImages({
     NAME_SPACE: "Mobile69.net",
     // PUBLIC_URL: "http://mobile69.net",
     // PUBLIC_URL: "/api",
-    PUBLIC_URL: "https://mobile69.net/api",
+    PUBLIC_URL: "https://www.mobile69.net/api",
     DOMAIN: "https://mobile69.net",
     ANDROID_ID: "https://play.google.com/store/apps/details?id=com.mobile69",
     IOS_ID: "https://play.google.com/store/apps/details?id=com.mobile69",

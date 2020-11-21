@@ -1,4 +1,3 @@
-import { DefaultSeo, NextSeo } from "next-seo";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 // We wrap our scripts below in Fragment to avoid unnecessary mark up
 import { Fragment } from "react";
@@ -27,7 +26,7 @@ export default class MyDocument extends Document {
   render() {
     // console.log("cann", this.props);
     return (
-      <Html>
+      <Html lang="en" dir="ltr">
         <Head>
           <link
             rel="stylesheet"

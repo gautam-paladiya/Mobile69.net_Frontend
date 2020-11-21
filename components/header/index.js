@@ -61,13 +61,7 @@ function Header(props) {
       <div className={clsx("flex-column flex-md-row", styles.headerParent)}>
         <div className={clsx("col-md-3", styles.logo)}>
           <Link href="/ringtones-and-wallpapers" replace>
-            {/* <img
-              src="/img/logo.png"
-              width={160}
-              height={75}
-              alt={process.env.NAME_SPACE}
-            /> */}
-            <div className={styles.logoText}>Mobile69</div>
+            <h1 className={styles.logoText}>Mobile69</h1>
           </Link>
         </div>
         <div className="col-md-6 col-11 p-2">

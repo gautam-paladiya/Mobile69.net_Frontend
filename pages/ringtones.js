@@ -17,7 +17,7 @@ class Ringtones extends React.Component {
           <Head>
             {RootHead({
               title:
-                "Free ringtones, wallpapers and backgrounds for your cell phone | Mobile69",
+                "Free ringtones , HD wallpapers , backgrounds for cell phone | Mobile69",
               canonical: "ringtones",
             })}
           </Head>

@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Message from "../message";
-import validator from "validator";
 import catchError from "../../utils/catchError";
 import {
   setToken,
@@ -22,11 +21,12 @@ export default function LoginComponent() {
   const [user, setUser] = useState(INITIAL_USER);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const re = '/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("handle submit");
-    if (!validator.isEmail(user.email)) {
+    if (!re.test(user.email)) {
       setError("Enter valid email address");
       return;
     }

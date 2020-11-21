@@ -111,9 +111,9 @@ class MusicItem extends Component {
               </div>
 
               {this.props.name && (
-                <h5 className={styles.cardTitle}>
+                <h2 className={styles.cardTitle}>
                   {this.props.item.fileOriginName}
-                </h5>
+                </h2>
               )}
             </div>
           </a>

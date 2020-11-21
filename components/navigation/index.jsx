@@ -15,7 +15,7 @@ function Navigation() {
 
   return (
     <div className={styles.navigation}>
-      <div className="d-flex flex-row justify-content-center mt-0 pt-0">
+      <header className="d-flex flex-row justify-content-center mt-0 pt-0">
         <Link href="/ringtones-and-wallpapers">
           <span
             className={
@@ -24,7 +24,7 @@ function Navigation() {
                 : clsx("btn btn-secondary",styles.tab)
             }
           >
-            <h6 style={{ margin: 0, padding: 0 }}>All</h6>
+            <h2 style={{ margin: 0, padding: 0 }}>All</h2>
           </span>
         </Link>
         <Link href="/wallpapers">
@@ -35,7 +35,7 @@ function Navigation() {
               : clsx("btn btn-secondary",styles.tab)
             }
           >
-            <h6>Wallpaper</h6>
+            <h2>Wallpaper</h2>
           </span>
         </Link>
         <Link href="/ringtones">
@@ -46,10 +46,10 @@ function Navigation() {
               : clsx("btn btn-secondary",styles.tab)
             }
           >
-            <h6>Ringtone</h6>
+            <h2>Ringtone</h2>
           </span>
         </Link>
-      </div>
+      </header>
       <hr className="divider" />
     </div>
   );

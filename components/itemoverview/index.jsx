@@ -201,9 +201,9 @@ class ItemOverView extends Component {
                     />
                     <div className="d-flex flex-column">
                       <div className="d-flex align-items-center justify-content-between">
-                        <h5 className={styles.fileText}>
+                        <h2 className={styles.fileText}>
                           {this.state.post.fileOriginName}
-                        </h5>
+                        </h2>
                         <h5 className={`${styles.fileText} text-primary `}>
                           <img
                             src="/svg/download.svg"

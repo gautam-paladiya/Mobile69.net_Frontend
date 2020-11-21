@@ -16,10 +16,10 @@ const addUrls = async (smStream) => {
   if (result.data) {
     for (const postItem of result.data) {
       smStream.write({ url: `/detail/${postItem._id}` });
-      smStream.write({ url: `/find/${postItem.fileOriginName}` });
-      for (const cat of postItem.fileTags) {
-        smStream.write({ url: `/find/${cat}` });
-      }
+      // smStream.write({ url: `/find/${postItem.fileOriginName}` });
+      // for (const cat of postItem.fileTags) {
+      //   smStream.write({ url: `/find/${cat}` });
+      // }
     }
   }
   //   const pageSlugs = data.pages.map(page => page.slug)
@@ -56,11 +56,11 @@ export const getServerSideProps = async ({ res, req }) => {
   const pipeline = smStream.pipe(createGzip());
 
   try {
-    smStream.write({ url: "/", changefreq: EnumChangefreq.WEEKLY });
-    smStream.write({ url: "/ringtones", changefreq: EnumChangefreq.MONTHLY });
-    smStream.write({ url: "/wallpapers", changefreq: EnumChangefreq.MONTHLY });
-    smStream.write({ url: "/login", changefreq: EnumChangefreq.MONTHLY });
-    smStream.write({ url: "/signup", changefreq: EnumChangefreq.MONTHLY });
+    smStream.write({ url: "/", changefreq: EnumChangefreq.HOURLY });
+    smStream.write({ url: "/ringtones", changefreq: EnumChangefreq.HOURLY });
+    smStream.write({ url: "/wallpapers", changefreq: EnumChangefreq.HOURLY });
+    smStream.write({ url: "/login", changefreq: EnumChangefreq.HOURLY });
+    smStream.write({ url: "/signup", changefreq: EnumChangefreq.HOURLY });
     await addUrls(smStream);
 
     smStream.end();
