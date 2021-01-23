@@ -1,5 +1,6 @@
 import "jquery";
 import "nprogress/nprogress.css";
+import "tailwindcss/tailwind.css";
 import "../node_modules/react-circular-progressbar/dist/styles.css";
 import "../styles.scss";
 import "aos/dist/aos.css";

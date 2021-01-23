@@ -28,7 +28,10 @@ export default function (props) {
         name="description"
         content={`Download free Wallpapers, Ringtones and Videos using ${process.env.NAME_SPACE}  and personalize your phone to suit you. Start your search now and free your phone`}
       />
-      <meta name='description' content={props.fileTags.map(tag=>{return ` ${tag} By Mobile69.net `})} />
+      {
+        props.fileTags && <meta name='description' content={props.fileTags.map(tag=>{return ` ${tag} By Mobile69.net `})} />
+
+      }
       <meta property="image" content={`/original.png`} />
 
       <meta property="url" content={`/original.png`} />

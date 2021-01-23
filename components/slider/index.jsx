@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import closeIcon from "../../assets/svg/close.svg";
 import AndroidIcon from "../../assets/img/androidIcon.png";
 import IosIcon from "../../assets/svg/ios.svg";
-import { Transition } from 'react-transition-group';
 import clsx from "clsx";
 import styles from './index.module.css'
 
