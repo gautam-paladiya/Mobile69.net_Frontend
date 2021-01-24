@@ -21,11 +21,11 @@ import Aos from "aos";
 class MyApp extends App {
 
 
-  componentDidMount() {
-    Aos.init({
-      duration: 2000,
-    });
-  }
+  // componentDidMount() {
+  //   Aos.init({
+  //     duration: 2000,
+  //   });
+  // }
   render() {
     const { Component, pageProps } = this.props;
 
@@ -34,3 +34,4 @@ class MyApp extends App {
 }
 
 export default wrapper.withRedux(MyApp);
+// export default MyApp

@@ -34,7 +34,7 @@ class ItemOverView extends Component {
   componentDidMount() {
     console.log("ItemOverViewComponents", this.props);
 
-    this.getData();
+    // this.getData();
   }
 
   // shouldComponentUpdate(nextProps, nextState) {

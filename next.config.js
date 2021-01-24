@@ -19,13 +19,18 @@ module.exports = withImages({
     ANDROID_ID: "https://play.google.com/store/apps/details?id=com.mobile69",
     IOS_ID: "https://play.google.com/store/apps/details?id=com.mobile69",
   },
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    config.plugins.push(new Dotenv({ silent: true }));
-    config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//));
-    config.plugins.push(new CaseSensitivePathsPlugin());
-
-    return config;
-  },
+  // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  //   config.plugins.push(new Dotenv({ silent: true }));
+  //   config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//));
+  //   config.plugins.push(new CaseSensitivePathsPlugin());
+  //   if (!isServer) {
+  //     config.node = {
+  //       fs: 'empty',
+  //       net: 'empty'
+  //     }
+  //   }
+  //   return config;
+  // },
   // images: {
   //   domains: ['mobile69.net'],
   // },

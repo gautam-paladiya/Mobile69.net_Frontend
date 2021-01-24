@@ -19,20 +19,18 @@ class DetailPage extends React.Component {
     console.log("DetailPage");
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("nextState", nextState);
-    console.log("nextProps", nextProps);
-    if (this.props.post._id == nextProps.post._id) {
-      console.log("return");
-      return false;
-    }
-    return true;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("nextState", nextState);
+  //   console.log("nextProps", nextProps);
+  //   if (this.props.post._id == nextProps.post._id) {
+  //     console.log("return");
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   render() {
-    console.log("DetailPage", "render");
     const { post, pageFound } = this.props;
-    console.log("DetailPage", post.types === "image");
 
     return (
       <Layout title={post.fileOriginName}>
@@ -54,13 +52,37 @@ class DetailPage extends React.Component {
   }
 }
 
-export async function getServerSideProps(context) {
-  console.log("getInitialProps detail ", context.query);
+// export async function getServerSideProps(context) {
+//   console.log("getInitialProps detail ", context.query);
+//   const result = await AxiosInstance.post(`/post/getpost`, {
+//     itemId: context.query.id,
+//   });
+//   if (result && result.data.status == 200) {
+//     // console.log(result);
+
+//     return {
+//       props: {
+//         post: result.data.post,
+//         pageFound: true,
+//       },
+//     };
+//   } else {
+//     return {
+//       props: {
+//         post: "",
+//         pageFound: false,
+//       },
+//     };
+//   }
+// }
+
+export async function getStaticProps(context) {
+  // console.log("getInitialProps detail ", context);
   const result = await AxiosInstance.post(`/post/getpost`, {
-    itemId: context.query.id,
+    itemId: context.params.id,
   });
   if (result && result.data.status == 200) {
-    // console.log(result);
+    console.log(result);
 
     return {
       props: {
@@ -76,5 +98,17 @@ export async function getServerSideProps(context) {
       },
     };
   }
+
 }
+
+
+
+export async function getStaticPaths(){
+  const result = await AxiosInstance.post(`/post/getId`);
+ 
+  const paths = await result.data.map((post)=>({params:{id:post._id}}))
+
+  return {paths,fallback:false}
+}
+
 export default connect((state) => state)(DetailPage);
