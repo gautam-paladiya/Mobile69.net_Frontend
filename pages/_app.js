@@ -16,7 +16,6 @@ Router.events.on("routeChangeStart", (url) => {
 });
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
-import Aos from "aos";
 
 class MyApp extends App {
 
